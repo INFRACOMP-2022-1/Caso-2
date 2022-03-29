@@ -1,4 +1,4 @@
-package main;
+package testMatriz;
 
 import java.util. concurrent. ThreadLocalRandom;
 
