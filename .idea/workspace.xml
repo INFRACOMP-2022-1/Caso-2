@@ -5,20 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4006985b-5ba6-47e6-b67e-8e4b86b13fbd" name="Changes" comment="thread 1 para ir recorriendo la lista de paginas generadas.">
-      <change afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Caso-2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Caso-2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/mainProyect/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Option1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/mainProyect/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/mainProyect/Opcion1.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Option2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/mainProyect/Opcion2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/ThreadAgingAlgo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/mainProyect/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Page.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/mainProyect/PageTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/PageTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/mainProyect/ThreadExcecProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/ThreadExcecProcess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/reporte/reporte.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/report/reporte.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/testMatriz/matriz.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/testMatriz/matriz.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/testMatriz/opcion1.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/testMatriz/opcion1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Page.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +44,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -119,7 +109,7 @@
       <workItem from="1648511311859" duration="19000" />
       <workItem from="1648926247340" duration="3937000" />
       <workItem from="1649008420082" duration="748000" />
-      <workItem from="1649009188603" duration="6629000" />
+      <workItem from="1649009188603" duration="10096000" />
     </task>
     <task id="LOCAL-00001" summary="thread 1 para ir recorriendo la lista de paginas generadas.">
       <created>1649008272943</created>
