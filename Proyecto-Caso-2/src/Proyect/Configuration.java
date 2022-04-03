@@ -30,8 +30,8 @@ public class Configuration {
 
     public Configuration(int pageSize, int intSize, int rows, int columns, int runType){
         //Save the parameters
-        pageSize = pageSize;//8
-        intSize = intSize;//4
+        pageSize = pageSize;
+        intSize = intSize;
         rows = rows;
         columns = columns;
         runType = runType;
@@ -46,6 +46,8 @@ public class Configuration {
         //Create the base array for the page table (just array)
 
         //Create the page table array (special data structure)
+
+        //Create the page array with reference format (the format that is directy usefull for option 2)
     }
 
     //--------------------------------------------------------------------------
