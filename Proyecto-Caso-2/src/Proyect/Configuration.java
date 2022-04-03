@@ -25,6 +25,8 @@ public class Configuration {
     public int columns;
     public int runType;
 
+    public String configurationName;
+
     /*
      * The number of pages needed to store all the integers of the matrices
      */
@@ -52,7 +54,7 @@ public class Configuration {
     // Constructor
     //--------------------------------------------------------------------------
 
-    public Configuration(int pageSize, int intSize, int rows, int columns, int runType){
+    public Configuration(int pageSize, int intSize, int rows, int columns, int runType, String configurationName){
         //Save the parameters
         this.pageSize = pageSize;
         this.intSize = intSize;
@@ -60,7 +62,10 @@ public class Configuration {
         this.columns = columns;
         this.runType = runType;
 
-        //Aditional info
+        //Configuration file name
+        this.configurationName = configurationName;
+
+        //Additional info
         this.pageCapacity = pageSize/intSize;
         this.pageNumber = ((columns*rows)/pageCapacity)*3 ;
         this.totalReferences = pageNumber*pageCapacity;

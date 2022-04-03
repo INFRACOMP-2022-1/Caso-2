@@ -45,7 +45,16 @@ public class Main {
         //Ask for parameters
         //parameter order: page size, int size, rows, columns, run type
         ArrayList<Integer> parameters = getOption1Parameters();
-        Configuration newConfig = new Configuration(parameters.get(0),parameters.get(1),parameters.get(2),parameters.get(3),parameters.get(4));
+
+        /*
+         * Get name of the configuration
+         */
+        System.out.println("Enter the name you want for your configuration file: ");
+        Scanner scanner = new Scanner(System.in);
+        String configurationName = scanner.nextLine().replaceAll("( )+", "").trim();
+
+        //This does all option 1 work
+        Configuration newConfig = new Configuration(parameters.get(0),parameters.get(1),parameters.get(2),parameters.get(3),parameters.get(4),configurationName);
 
         //Adds configutation to the list of available configurations
         loadedConfigurations.add(newConfig);
@@ -139,6 +148,9 @@ public class Main {
             runTypeUnparsed = scanner.nextLine();
         }
         runType = Integer.parseInt(runTypeUnparsed);
+
+
+
 
         ArrayList<Integer> parameters = new ArrayList<>();
         parameters.add(pageSize);
