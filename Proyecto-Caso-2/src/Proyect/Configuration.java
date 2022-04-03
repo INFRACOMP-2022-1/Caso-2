@@ -1,5 +1,6 @@
 package Proyect;
 
+import javax.swing.text.Element;
 import java.util.ArrayList;
 
 /**
@@ -24,8 +25,19 @@ public class Configuration {
     public int columns;
     public int runType;
 
+    /*
+     * The number of pages needed to store all the integers of the matrices
+     */
     public int pageNumber;
+
+    /*
+     * The number of integers that can fit in a single page
+     */
     public int pageCapacity;
+
+    /*
+     * The total number of integers stored in the virtual memory. Or the total number of elements in the 3 matrices
+     */
     public int totalReferences;
 
     public int[][] matrix1;
@@ -33,7 +45,8 @@ public class Configuration {
     public int[][] matrix3;
 
     public ArrayList<Integer> virtualMemory;//this is the base array just the references in order of the tipo de recorrido
-    public ArrayList<Page> pageArray;//an array containing all the pages
+    public ArrayList<Page> pageTable;//an array containing all the pages
+    public ArrayList<ElementInfo> pageTableSpecial;//an array that contains the elements like the virtual memory but has some extra information so option 2 can be run
 
     //--------------------------------------------------------------------------
     // Constructor
@@ -56,10 +69,18 @@ public class Configuration {
         createMatrices();
 
         //Create the base array for the page table (just array)
+        virtualMemory = new ArrayList<>();
 
         //Create the page table array (special data structure)
+        pageTable = new ArrayList<>();
 
         //Create the page array with reference format (the format that is directy usefull for option 2)
+        pageTableSpecial = new ArrayList<>();
+
+
+        //TODO:Crear reporte -> Santiago
+
+        //TODO: Crear console output para verificar de que todo fue creado correctamente
     }
 
     //--------------------------------------------------------------------------
@@ -97,6 +118,14 @@ public class Configuration {
                 }
             }
         }
+
+        //Create virtual memory has already been done in the matrix processes
+
+        //Create page tables
+        createPageTable();
+
+        //Create special page tables
+        createPageTableSpecial();
     }
 
     /**
@@ -106,19 +135,186 @@ public class Configuration {
     private void createBaseMatrices(int[][] matrix) {
         for(int row = 0 ; row < rows;row++){
             for(int column = 0; column < columns;column++){
-                matrix[row][column] = matrixFillNumber;
+                matrix[row][column] = getMatrixFillNumber();
                 virtualMemory.add(matrix1[row][column]);//Adds to the main virtual memory list the current element that has been created
                 matrixFillNumber+=1;
             }
         }
     }
 
+    /**
+     * Creates the page table that contains pages with the respective integers inside
+     */
     public void createPageTable(){
+        int currentPageNumber = 0;
+        Page currentPage;
+        int curNumElementsInPage = 0;
+        int capacity = pageCapacity;//the cap capacity of a page
 
+        //page zero is created
+        currentPage = new Page(intSize,pageSize,pageCapacity,currentPageNumber);
+        for(int i = 0 ; i < virtualMemory.size();i++){
+            try{
+                //if the current page capacity isnt meet then add the element to the current page
+                if(curNumElementsInPage < capacity){
+                    currentPage.addInteger(virtualMemory.get(i));
+                }
+                //when the page capacity has been filled add the current page to the table, and create a new empty page and add the current int to it
+                else{
+                    pageTable.add(currentPage);//page is added to the table
+                    currentPageNumber +=1;
+                    currentPage = new Page(intSize,pageSize,pageCapacity,currentPageNumber);
+                    currentPage.addInteger(virtualMemory.get(i));
+                }
+
+                //This handles the case that the number of elements in virtual memory don't completely fill the page. This makes sure the unfilled last page adds
+                if(i == virtualMemory.size()-1){
+                    pageTable.add(currentPage);//page is added to the table
+                }
+            }
+            catch (Exception e){
+                //This should never get here by any means the ifs above should avoid it
+                e.printStackTrace();
+            }
+
+        }
     }
 
+    /**
+     * Creates the special page table that is going to be used in option 2
+     */
     public void createPageTableSpecial(){
+        //Santiago ESTE ES EL METODO DEL HASHMAP ADAPTADO
+
+        //Go through the page table and create the elements
+        for(int currentPage = 0; currentPage <pageTable.size();currentPage++){
+            ArrayList<Integer> pageContent = pageTable.get(currentPage).getPageContent();
+            for(int elementPosition = 0; elementPosition < pageContent.size();elementPosition++){
+                int currentElementDisplacement = elementPosition * getIntSize();
+                ElementInfo currElementInfo = new ElementInfo(pageContent.get(elementPosition),currentElementDisplacement,currentPage,elementPosition);
+                pageTableSpecial.add(currElementInfo);
+            }
+        }
 
     }
 
+    public int getMatrixFillNumber() {
+        return matrixFillNumber;
+    }
+
+    public void setMatrixFillNumber(int matrixFillNumber) {
+        this.matrixFillNumber = matrixFillNumber;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getIntSize() {
+        return intSize;
+    }
+
+    public void setIntSize(int intSize) {
+        this.intSize = intSize;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public void setColumns(int columns) {
+        this.columns = columns;
+    }
+
+    public int getRunType() {
+        return runType;
+    }
+
+    public void setRunType(int runType) {
+        this.runType = runType;
+    }
+
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public int getPageCapacity() {
+        return pageCapacity;
+    }
+
+    public void setPageCapacity(int pageCapacity) {
+        this.pageCapacity = pageCapacity;
+    }
+
+    public int getTotalReferences() {
+        return totalReferences;
+    }
+
+    public void setTotalReferences(int totalReferences) {
+        this.totalReferences = totalReferences;
+    }
+
+    public int[][] getMatrix1() {
+        return matrix1;
+    }
+
+    public void setMatrix1(int[][] matrix1) {
+        this.matrix1 = matrix1;
+    }
+
+    public int[][] getMatrix2() {
+        return matrix2;
+    }
+
+    public void setMatrix2(int[][] matrix2) {
+        this.matrix2 = matrix2;
+    }
+
+    public int[][] getMatrix3() {
+        return matrix3;
+    }
+
+    public void setMatrix3(int[][] matrix3) {
+        this.matrix3 = matrix3;
+    }
+
+    public ArrayList<Integer> getVirtualMemory() {
+        return virtualMemory;
+    }
+
+    public void setVirtualMemory(ArrayList<Integer> virtualMemory) {
+        this.virtualMemory = virtualMemory;
+    }
+
+    public ArrayList<Page> getPageTable() {
+        return pageTable;
+    }
+
+    public void setPageTable(ArrayList<Page> pageTable) {
+        this.pageTable = pageTable;
+    }
+
+    public ArrayList<ElementInfo> getPageTableSpecial() {
+        return pageTableSpecial;
+    }
+
+    public void setPageTableSpecial(ArrayList<ElementInfo> pageTableSpecial) {
+        this.pageTableSpecial = pageTableSpecial;
+    }
 }
