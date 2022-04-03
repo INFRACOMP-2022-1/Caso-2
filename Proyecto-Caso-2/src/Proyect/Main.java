@@ -64,9 +64,31 @@ public class Main {
     public static void option2(){
         Configuration configuration = selectConfiguration();
 
+        System.out.println("");
 
+        int pageFrameSize = selectPageFrameSize();
+
+        Option2 option2 = new Option2(configuration,pageFrameSize);
     }
 
+    /**
+     * Lets the user select the desired page frame size (marco de pagina) to run option 2 with.
+     * @return integer of the page frame size
+     */
+    public static int selectPageFrameSize(){
+        int pageFrameSize;
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the page frame size (marco de paginas): ");
+        String pageFrameSizeStr = scanner.nextLine().trim();
+        while(!isInteger(pageFrameSizeStr)){
+            System.out.println("Option needs to be an integer");
+            pageFrameSizeStr = scanner.nextLine().trim();
+        }
+        pageFrameSize = Integer.parseInt(pageFrameSizeStr);
+        return pageFrameSize;
+    }
 
     /**
      * Lets user select a configuration from the list of loaded configurations.
