@@ -337,4 +337,12 @@ public class Configuration {
     public void setPageTableSpecial(ArrayList<ElementInfo> pageTableSpecial) {
         this.pageTableSpecial = pageTableSpecial;
     }
+
+    public String getConfigurationName() {
+        return configurationName;
+    }
+
+    public void setConfigurationName(String configurationName) {
+        this.configurationName = configurationName;
+    }
 }

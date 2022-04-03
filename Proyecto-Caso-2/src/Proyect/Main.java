@@ -1,8 +1,6 @@
 package Proyect;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -44,7 +42,7 @@ public class Main {
     public static void option1(){
         //Ask for parameters
         //parameter order: page size, int size, rows, columns, run type
-        ArrayList<Integer> parameters = getOption1Parameters();
+        ArrayList<Integer> parameters = selectParameters();
 
         /*
          * Get name of the configuration
@@ -64,16 +62,46 @@ public class Main {
      * Option 2
      */
     public static void option2(){
+        Configuration configuration = selectConfiguration();
+
 
     }
 
 
+    /**
+     * Lets user select a configuration from the list of loaded configurations.
+     * @return Configuration the selected configuration file
+     */
+    public static Configuration selectConfiguration(){
+        int option = 1;
+        System.out.println("Available configurations: ");
+        for(int i = 0 ; i < loadedConfigurations.size();i++){
+            Configuration config = loadedConfigurations.get(i);
+            System.out.println( String.format("%d. %s", option, config.getConfigurationName()));
+            option += 1;
+        }
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Select a configuration: ");
+        String selectedOptionStr = scanner.nextLine().trim();
+        while(!isInteger(selectedOptionStr)){
+            System.out.println("Option needs to be an integer");
+            selectedOptionStr = scanner.nextLine().trim();
+        }
+        while(Integer.parseInt(selectedOptionStr)>option||Integer.parseInt(selectedOptionStr)<1){
+            System.out.println(String.format("Option needs to be within 1 and %d",option));
+        }
+        int selectedOption = Integer.parseInt(selectedOptionStr)-1;//-1 because the list starts at 0
+
+        Configuration selectedConfiguration = loadedConfigurations.get(selectedOption);
+        return selectedConfiguration;
+    }
 
     /**
      * Gets option 1 parameters to create the matrices and the page table
      * @return Arraylist with the parameters in the followin order.parameter order: page size, int size, rows, columns, run type
      */
-    public static ArrayList getOption1Parameters(){
+    public static ArrayList selectParameters(){
         //TODO: Si tenemos tiempo seria bueno hacer como en caso 1 que tenemos un txt del que cargamos las configs, aunque al menos en este caso las configs se guardan
         //TODO: Toca hacer el check de que el intSize quepa n veces en el page size (no se si eso es un req)
         int pageSize;//Tamaño de una página (TP)
