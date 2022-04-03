@@ -79,8 +79,9 @@ public class Configuration {
 
 
         //TODO:Crear reporte -> Santiago
-
+        createReport();
         //TODO: Crear console output para verificar de que todo fue creado correctamente
+        consoleOutput();
     }
 
     //--------------------------------------------------------------------------
@@ -196,6 +197,20 @@ public class Configuration {
             }
         }
 
+    }
+
+    /**
+     * Creates the report needed for option 1
+     */
+    public void createReport(){
+        //TODO: Santiago -> hacer todo lo del reporte
+    }
+
+    /**
+     * Create the console output refelecting all the content of option 1
+     */
+    public void consoleOutput(){
+        //TODO: Santiago -> hacer todo lo del console output
     }
 
     public int getMatrixFillNumber() {
