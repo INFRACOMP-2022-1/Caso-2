@@ -1,5 +1,6 @@
 package testMatriz;
 
+import java.util.ArrayList;
 import java.util. concurrent. ThreadLocalRandom;
 
 
@@ -106,7 +107,16 @@ public class opcion1
 		
 		
 		
-
+for(int i= 0; i < lista.size(); i++){
+			
+			
+			lista.get(i);
+			
+			
+			
+			
+			
+		}ArrayList<Integer> lista
 		
 		
 
@@ -117,6 +127,79 @@ public class opcion1
 		
 		
 		
+
+
+	lista.clear();       	
+
+		
+		for(int i= 0; i <mat1.length; i++){
+		    
+            for(int j= 0; j < mat1[0].length; j++){
+            	
+            	lista.add(mat2[i][j] );
+            	
+            	if (lista.size()  == 4) {
+            		
+            		
+            		map.put(numero,lista);
+            		numero+=1;
+
+                	lista.clear();       	
+        	}
+            	
+            }
+            
+		}
+		
+		lista.clear();       	
+
+		
+		for(int i= 0; i <mat1.length; i++){
+		    
+            for(int j= 0; j < mat1[0].length; j++){
+            	
+            	lista.add(mat3[i][j] );
+            	
+            	if (lista.size()  == 4) {
+            		
+            		
+            		map.put(numero,lista);
+            		numero+=1;
+
+                	lista.clear();       	
+        	}
+            	
+            }
+            
+		}	
+		
+		
+		
+		
+	if (tipoRecorrido==1) {
+			
+			recorrido1();
+		}
+		else if  (tipoRecorrido==2){
+			
+			recorrido2();
+
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		
 		
 		//se selecciona el tipo de recorrido /
