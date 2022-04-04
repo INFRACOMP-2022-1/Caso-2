@@ -51,7 +51,11 @@ public class Configuration {
     public ArrayList<ElementInfo> pageTableSpecial;//an array that contains the elements like the virtual memory but has some extra information so option 2 can be run
 
     public ArrayList<Integer> virtMemoryPositionsAccesed;//Stores the positions in the array that are accesed in the type of run
-    public ArrayList<Integer> referenceTable; //Records the references to the diferent pages depending on the algorithm selected
+    public ArrayList<ElementInfo> referenceTable; //Records the references to the diferent pages depending on the algorithm selected
+
+    //DISCLAIMER: The difference between pageTableSpecial and reference table is that pageTableSpecial contains the info of the page of each reference in the virtualMemory in ORDER, meanwhile referenceTable has the info of the accesed elements acording to the run type
+    //Me sobre complique? Si pero creo que funciona
+
     //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------
@@ -139,6 +143,9 @@ public class Configuration {
 
         //Create special page tables
         createPageTableSpecial();
+
+        //Create reference table (used in option 2)
+        createReferenceTable();
     }
 
     /**
@@ -200,6 +207,43 @@ public class Configuration {
         //Santiago ESTE ES EL METODO DEL HASHMAP ADAPTADO
 
         //Go through the page table and create the elements
+        for(int currentPage = 0; currentPage <pageTable.size();currentPage++){
+            ArrayList<Integer> pageContent = pageTable.get(currentPage).getPageContent();
+            for(int elementPosition = 0; elementPosition < pageContent.size();elementPosition++){
+                int currentElementDisplacement = elementPosition * getIntSize();
+                ElementInfo currElementInfo = new ElementInfo(pageContent.get(elementPosition),currentElementDisplacement,currentPage,elementPosition);
+                pageTableSpecial.add(currElementInfo);
+            }
+        }
+
+    }
+
+    /**
+     * Creates the page reference table that is used in option 2
+     */
+    public void createReferenceTable(){
+        //Santiago ESTE ES EL METODO DEL HASHMAP ADAPTADO ,y si esta re fumado
+        ArrayList<Integer> accesPostitionTable = getIntegerAccessTrack();
+
+
+        //recorro todos los accesos y me voy a su respectiva posicion en page table especial (los index de ambos estan alineados)
+        for(int i = 0; i < accesPostitionTable.size();i++){
+            int position= accesPostitionTable.get(i);//int of the position to be accesed
+            ElementInfo elementAccesed = pageTableSpecial.get(position);//gets all the info of te accesed element, alongs with page size and other usefull info for option 2
+            referenceTable.add(elementAccesed);
+        }
+    }
+
+
+    /**
+     * Basically gets the positions of the elements accesed depending on the run type (recorrido).
+     * This will be used by createPageTableSpecial to get the pages to then be able to do the page reference table
+     * @return Arraylist with the position of the elements within the virtual memory acording to the accesses done by the run type
+     */
+    public ArrayList<Integer> getIntegerAccessTrack(){
+        //Go through the page table and create the elements
+
+        ArrayList<Integer> accessPositionTable = new ArrayList<>();
 
         //go through each element of each matrix
         int currentRow = 0;
@@ -222,15 +266,15 @@ public class Configuration {
                 //cols first then rows
 
                 //access first matrix
-                referenceTable.add(matrix1Counter);
+                accessPositionTable.add(matrix1Counter);
                 matrix1Counter+=1;
 
                 //access second matrix
-                referenceTable.add(matrix2Counter);
+                accessPositionTable.add(matrix2Counter);
                 matrix2Counter+=1;
 
                 //access third matrix
-                referenceTable.add(matrix3Counter);
+                accessPositionTable.add(matrix3Counter);
                 matrix3Counter+=1;
             }
             if(runType==2){
@@ -245,50 +289,20 @@ public class Configuration {
                 }
 
                 //access first matrix
-                referenceTable.add(matrix1Counter);
+                accessPositionTable.add(matrix1Counter);
                 matrix1Counter+=rows;
 
                 //access second matrix
-                referenceTable.add(matrix2Counter);
+                accessPositionTable.add(matrix2Counter);
                 matrix2Counter+=rows;
 
                 //access third matrix
-                referenceTable.add(matrix3Counter);
+                accessPositionTable.add(matrix3Counter);
                 matrix3Counter+=rows;
 
             }
         }
-    }
-
-    /**
-     *
-     */
-    public void createReferenceTable(){
-        //escoger recorrido
-
-        //para cada recorrido la referencia fuer guardad en 2*(rows*filas) + i (por que la matriz 3 siempre se añade linearmente la suma
-        //RECORRIDO 1
-        if(runType==1){
-            for(int row = 0 ; row < rows;row++){
-                for(int column = 0; column < columns;column++){
-
-                    //Sum
-                    this.matrix3[row][column] = matrix1[row][column]+matrix2[row][column];
-                    virtualMemory.add(matrix3[row][column]);//Adds to the main virtual memory list the current element that has been created
-                    //Position accesed stored
-                }
-            }
-        }
-
-        //RECORRIDO 2
-        else{
-            for(int column = 0; column < columns;column++){
-                for(int row = 0 ; row < rows;row++){
-                    this.matrix3[row][column] = matrix1[row][column]+matrix2[row][column];
-                    virtualMemory.add(matrix3[row][column]);//Adds to the main virtual memory list the current element that has been created
-                }
-            }
-        }
+        return accessPositionTable;
     }
 
     /**
