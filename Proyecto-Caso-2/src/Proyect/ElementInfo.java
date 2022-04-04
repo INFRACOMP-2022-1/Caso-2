@@ -40,4 +40,20 @@ public class ElementInfo {
     // Methods
     //--------------------------------------------------------------------------
 
+
+    public int getIntegerValue() {
+        return integerValue;
+    }
+
+    public int getDisplacement() {
+        return displacement;
+    }
+
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    public int getIntegerPosition() {
+        return integerPosition;
+    }
 }

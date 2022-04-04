@@ -1,6 +1,10 @@
 package Proyect;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * The configuration class is the one responsible for creating the matrices, saving all the info on the page sizes, integer size, and other important information. It also sets up the tables for option 2 to then be able to run its algorithms.
@@ -76,9 +80,6 @@ public class Configuration {
         this.pageNumber = ((columns*rows)/pageCapacity)*3 ;
         this.totalReferences = pageNumber*pageCapacity;
 
-        //Create matrix 1,2,3 con el recorrido indicado
-        createMatrices();
-
         //Create the base array for the page table (just array)
         virtualMemory = new ArrayList<>();
 
@@ -90,6 +91,20 @@ public class Configuration {
 
         //Reference table(track) keeps track de que paginas son referenciadas para crear la matriz 3
         referenceTable = new ArrayList<>();
+
+        //Create matrix 1,2,3 con el recorrido indicado. Also
+        createMatrices();
+
+        //Create virtual memory has already been done in the matrix processes
+
+        //Create page tables
+        createPageTable();
+
+        //Create special page tables
+        createPageTableSpecial();
+
+        //Create reference table (used in option 2)
+        createReferenceTable();
 
         //TODO:Crear reporte -> Santiago
         createReport();
@@ -136,16 +151,7 @@ public class Configuration {
             }
         }
 
-        //Create virtual memory has already been done in the matrix processes
 
-        //Create page tables
-        createPageTable();
-
-        //Create special page tables
-        createPageTableSpecial();
-
-        //Create reference table (used in option 2)
-        createReferenceTable();
     }
 
     /**
@@ -196,7 +202,6 @@ public class Configuration {
                 //This should never get here by any means the ifs above should avoid it
                 e.printStackTrace();
             }
-
         }
     }
 
@@ -306,14 +311,134 @@ public class Configuration {
      * Creates the report needed for option 1
      */
     public void createReport(){
-        //TODO: Santiago -> hacer todo lo del reporte
+        try {
+            String fileRoute = String.format("Caso2/outputFiles/%s.txt", configurationName);
+            File resultFile = new File(fileRoute);
+            if (resultFile.createNewFile()) {
+                System.out.println("You can see the results in the following file in the outputfiles folder: " + resultFile.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+            //GET FILE
+            FileWriter fileWriter = new FileWriter(fileRoute);
+            fileWriter.write("\n");
+            fileWriter.write("REPORT");
+            fileWriter.write("\n");
+
+            //WRITE REPORT CONTENT
+            fileWriter.write(String.format("TP=%d",pageSize));
+            fileWriter.write(String.format("TE=%d",intSize));
+            fileWriter.write(String.format("NF=%d",rows));
+            fileWriter.write(String.format("NC=%d",columns));
+            fileWriter.write(String.format("TR=%d",runType));
+            fileWriter.write(String.format("NP=%d",pageNumber));
+            fileWriter.write(String.format("NR=%d",totalReferences));
+
+            int currRow = 0;
+            int currColumn = 0;
+
+            ArrayList<Integer> accessList = listOfIntegers();
+
+            for(int i = 0; i < (columns*rows)*3;i++){
+                int position = accessList.get(i);//the position within pageTableSpecial to access
+                ElementInfo currElement = pageTableSpecial.get(position);//gets the element and its info
+                int currElementPage = currElement.getPageNumber();
+                int currElementDisplacement = currElement.getDisplacement();
+
+                //Matrix A
+                if(i%3==0){
+                    fileWriter.write(String.format("A:[%d-%d],%d,%d",currRow,currColumn,currElementPage,currElementDisplacement));
+                    if(i!=0){
+                        currRow+=1;
+                    }
+                }
+
+                //Matrix B
+                if(i%3==1){
+                    fileWriter.write(String.format("B:[%d-%d],%d,%d",currRow,currColumn,currElementPage,currElementDisplacement));
+                }
+
+                //Matrix C
+                if(i%3 ==2){
+                    fileWriter.write(String.format("C:[%d-%d],%d,%d",currRow,currColumn,currElementPage,currElementDisplacement));
+                }
+
+                currColumn+=1;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
      * Create the console output refelecting all the content of option 1
      */
     public void consoleOutput(){
-        //TODO: Santiago -> hacer todo lo del console output
+        System.out.println(String.format("TP=%d",pageSize));
+        System.out.println(String.format("TE=%d",intSize));
+        System.out.println(String.format("NF=%d",rows));
+        System.out.println(String.format("NC=%d",columns));
+        System.out.println(String.format("TR=%d",runType));
+        System.out.println(String.format("NP=%d",pageNumber));
+        System.out.println(String.format("NR=%d",totalReferences));
+
+        int currRow = 0;
+        int currColumn = 0;
+
+        ArrayList<Integer> accessList = listOfIntegers();
+
+        for(int i = 0; i < (columns*rows)*3;i++){
+            int position = accessList.get(i);//the position within pageTableSpecial to access
+            ElementInfo currElement = pageTableSpecial.get(position);//gets the element and its info
+            int currElementPage = currElement.getPageNumber();
+            int currElementDisplacement = currElement.getDisplacement();
+
+            //Matrix A
+            if(i%3==0){
+                System.out.println(String.format("A:[%d-%d],%d,%d",currRow,currColumn,currElementPage,currElementDisplacement));
+                if(i!=0){
+                    currRow+=1;
+                }
+            }
+
+            //Matrix B
+            if(i%3==1){
+                System.out.println(String.format("B:[%d-%d],%d,%d",currRow,currColumn,currElementPage,currElementDisplacement));
+            }
+
+            //Matrix C
+            if(i%3 ==2){
+                System.out.println(String.format("C:[%d-%d],%d,%d",currRow,currColumn,currElementPage,currElementDisplacement));
+            }
+
+            currColumn+=1;
+        }
+    }
+
+    /**
+     * Gets the list of integers in from the three matrices
+     * @return List with the integers
+     */
+    public ArrayList<Integer> listOfIntegers(){
+        ArrayList<Integer> accessList = new ArrayList<>();
+        int matrix1Counter = 0;//gets index in table where matrix 1 starts
+        int matrix2Counter = (rows*columns);//gets index in table where matrix 2 starts
+        int matrix3Counter = (rows*columns)*2;//gets index in table where matrix 3 starts
+
+        for(int i = 0;i<rows*columns;i++){
+
+            accessList.add(matrix1Counter);
+            matrix1Counter += 1;
+
+            accessList.add(matrix2Counter);
+            matrix2Counter += 1;
+
+            accessList.add(matrix3Counter);
+            matrix3Counter += 1;
+
+        }
+        return accessList;
     }
 
     public int getMatrixFillNumber() {
