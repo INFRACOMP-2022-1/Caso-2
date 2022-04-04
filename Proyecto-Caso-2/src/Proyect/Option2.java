@@ -9,6 +9,7 @@ public class Option2 {
     public Configuration configuration;
     public int pageFrameSize;
 
+
     //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------

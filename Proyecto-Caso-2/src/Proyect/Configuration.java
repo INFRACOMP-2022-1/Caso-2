@@ -50,6 +50,8 @@ public class Configuration {
     public ArrayList<Page> pageTable;//an array containing all the pages
     public ArrayList<ElementInfo> pageTableSpecial;//an array that contains the elements like the virtual memory but has some extra information so option 2 can be run
 
+    public ArrayList<Integer> virtMemoryPositionsAccesed;//Stores the positions in the array that are accesed in the type of run
+    public ArrayList<Integer> referenceTable; //Records the references to the diferent pages depending on the algorithm selected
     //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------
@@ -79,9 +81,11 @@ public class Configuration {
         //Create the page table array (special data structure)
         pageTable = new ArrayList<>();
 
-        //Create the page array with reference format (the format that is directy usefull for option 2)
+        //Create the page array with reference format (the format that is directy usefull for building the referene table used in option table)
         pageTableSpecial = new ArrayList<>();
 
+        //Reference table(track) keeps track de que paginas son referenciadas para crear la matriz 3
+        referenceTable = new ArrayList<>();
 
         //TODO:Crear reporte -> Santiago
         createReport();
@@ -109,8 +113,11 @@ public class Configuration {
         if(runType==1){
             for(int row = 0 ; row < rows;row++){
                 for(int column = 0; column < columns;column++){
+
+                    //Sum
                     this.matrix3[row][column] = matrix1[row][column]+matrix2[row][column];
                     virtualMemory.add(matrix3[row][column]);//Adds to the main virtual memory list the current element that has been created
+                    //Position accesed stored
                 }
             }
         }
@@ -193,15 +200,95 @@ public class Configuration {
         //Santiago ESTE ES EL METODO DEL HASHMAP ADAPTADO
 
         //Go through the page table and create the elements
-        for(int currentPage = 0; currentPage <pageTable.size();currentPage++){
-            ArrayList<Integer> pageContent = pageTable.get(currentPage).getPageContent();
-            for(int elementPosition = 0; elementPosition < pageContent.size();elementPosition++){
-                int currentElementDisplacement = elementPosition * getIntSize();
-                ElementInfo currElementInfo = new ElementInfo(pageContent.get(elementPosition),currentElementDisplacement,currentPage,elementPosition);
-                pageTableSpecial.add(currElementInfo);
+
+        //go through each element of each matrix
+        int currentRow = 0;
+        int currentColumn = 0;
+
+        //stores the base counters for each matrix, these values wont change
+        int m1CounterBase = 0;
+        int m2CounterBase =(rows*columns);
+        int m3CounterBase = (rows*columns)*2;
+
+        //for recorrido 2 only
+        int cycle = 0;
+
+        //stores base counters, these values will change
+        int matrix1Counter = 0;//gets index in table where matrix 1 starts
+        int matrix2Counter = (rows*columns);//gets index in table where matrix 2 starts
+        int matrix3Counter = (rows*columns)*2;//gets index in table where matrix 3 starts
+        for(int i = 0;i<rows*columns;i++){
+            if(runType==1){
+                //cols first then rows
+
+                //access first matrix
+                referenceTable.add(matrix1Counter);
+                matrix1Counter+=1;
+
+                //access second matrix
+                referenceTable.add(matrix2Counter);
+                matrix2Counter+=1;
+
+                //access third matrix
+                referenceTable.add(matrix3Counter);
+                matrix3Counter+=1;
+            }
+            if(runType==2){
+                //rows first then column
+                if(i%rows==0 && i != 0){
+                    //adds one row cycle completed
+                    cycle += 1;
+                    //resets to base all counters
+                    matrix1Counter= m1CounterBase+cycle;
+                    matrix2Counter = m2CounterBase+cycle;
+                    matrix3Counter = m3CounterBase+cycle;
+                }
+
+                //access first matrix
+                referenceTable.add(matrix1Counter);
+                matrix1Counter+=rows;
+
+                //access second matrix
+                referenceTable.add(matrix2Counter);
+                matrix2Counter+=rows;
+
+                //access third matrix
+                referenceTable.add(matrix3Counter);
+                matrix3Counter+=rows;
+
+            }
+        }
+    }
+
+    /**
+     *
+     */
+    public void createReferenceTable(){
+        //escoger recorrido
+
+        //para cada recorrido la referencia fuer guardad en 2*(rows*filas) + i (por que la matriz 3 siempre se añade linearmente la suma
+        //RECORRIDO 1
+        if(runType==1){
+            for(int row = 0 ; row < rows;row++){
+                for(int column = 0; column < columns;column++){
+
+                    //Sum
+                    this.matrix3[row][column] = matrix1[row][column]+matrix2[row][column];
+                    virtualMemory.add(matrix3[row][column]);//Adds to the main virtual memory list the current element that has been created
+                    //Position accesed stored
+                }
             }
         }
 
+        //RECORRIDO 2
+        else{
+            for(int column = 0; column < columns;column++){
+                for(int row = 0 ; row < rows;row++){
+                    this.matrix3[row][column] = matrix1[row][column]+matrix2[row][column];
+                    virtualMemory.add(matrix3[row][column]);//Adds to the main virtual memory list the current element that has been created
+                }
+            }
+        }
     }
 
     /**
