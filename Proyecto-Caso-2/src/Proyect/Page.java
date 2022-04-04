@@ -69,37 +69,6 @@ public class Page {
         }
     }
 
-    /**
-     * Gets the displacement within the page, in bytes, of a given integer
-     * @param integer the integer whose displacement you want to know
-     * @return
-     */
-    public int getIntegerDisplacement(int integer){
-        int position=0;
-        try{
-            position = getIntegerPosition(integer);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return position*getIntSize();
-
-    }
-
-    /**
-     * Gets the position of the integer within the array
-     * @param integer the integer whose position you want to know
-     * @return the position of the given integer within the array
-     * @throws Exception if the integer given isnt in the page
-     */
-    public int getIntegerPosition(int integer) throws Exception{
-        for(int i = 0 ; i < pageContent.size();i++){
-            if(pageContent.get(i)==integer){
-                return i;
-            }
-        }
-        throw new Exception("The integer is not in this page.");
-    }
     public int getIntSize() {
         return intSize;
     }

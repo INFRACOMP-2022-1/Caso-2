@@ -11,7 +11,7 @@ public class Main {
     /*
     Contains the loaded configurations
      */
-    public static ArrayList<Configuration> loadedConfigurations = new ArrayList<>();
+    public static ArrayList<Configuration> loadedConfigurations = new ArrayList<>();//TODO: Intentar persistir la configuracin
 
     //--------------------------------------------------------------------------
     // Main
@@ -29,7 +29,6 @@ public class Main {
         else{
             option2();
         }
-
     }
 
     //--------------------------------------------------------------------------
@@ -68,6 +67,7 @@ public class Main {
 
         int pageFrameSize = selectPageFrameSize();
 
+        //el archivo de referencia se puede acceder con configuration.getReferenceTable()
         Option2 option2 = new Option2(configuration,pageFrameSize);
     }
 
@@ -161,16 +161,13 @@ public class Main {
          */
         System.out.println("Enter number of rows for the matrices: ");
         String rowsUnparsed = scanner.nextLine();
-        while(!isInteger(rowsUnparsed)){
+        while(!isInteger(rowsUnparsed)) {
             System.out.println("Row size needs to be an integer. Please try again.");
             rowsUnparsed = scanner.nextLine();
         }
-        //TODO : Undo si no hay una restriccion
-        /**
         while(pageSize%Integer.parseInt(rowsUnparsed)!=0){
             System.out.println("The entered page size is not divisible by the integer size selected. Please select a valid integer size.");
         }
-        **/
         rows = Integer.parseInt(rowsUnparsed);
 
         /*

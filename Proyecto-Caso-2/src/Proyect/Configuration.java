@@ -1,6 +1,5 @@
 package Proyect;
 
-import javax.swing.text.Element;
 import java.util.ArrayList;
 
 /**
@@ -9,6 +8,7 @@ import java.util.ArrayList;
  * @author Santiago Vela
  * @author Verónica Escobar
  */
+
 public class Configuration {
     //--------------------------------------------------------------------------
     // Attributes
@@ -119,7 +119,7 @@ public class Configuration {
                 for(int column = 0; column < columns;column++){
 
                     //Sum
-                    this.matrix3[row][column] = matrix1[row][column]+matrix2[row][column];
+                    matrix3[row][column] = matrix1[row][column]+matrix2[row][column];
                     virtualMemory.add(matrix3[row][column]);//Adds to the main virtual memory list the current element that has been created
                     //Position accesed stored
                 }
@@ -130,7 +130,7 @@ public class Configuration {
         else{
             for(int column = 0; column < columns;column++){
                 for(int row = 0 ; row < rows;row++){
-                    this.matrix3[row][column] = matrix1[row][column]+matrix2[row][column];
+                    matrix3[row][column] = matrix1[row][column]+matrix2[row][column];
                     virtualMemory.add(matrix3[row][column]);//Adds to the main virtual memory list the current element that has been created
                 }
             }
@@ -204,8 +204,6 @@ public class Configuration {
      * Creates the special page table that is going to be used in option 2
      */
     public void createPageTableSpecial(){
-        //Santiago ESTE ES EL METODO DEL HASHMAP ADAPTADO
-
         //Go through the page table and create the elements
         for(int currentPage = 0; currentPage <pageTable.size();currentPage++){
             ArrayList<Integer> pageContent = pageTable.get(currentPage).getPageContent();
@@ -215,7 +213,6 @@ public class Configuration {
                 pageTableSpecial.add(currElementInfo);
             }
         }
-
     }
 
     /**
@@ -290,15 +287,15 @@ public class Configuration {
 
                 //access first matrix
                 accessPositionTable.add(matrix1Counter);
-                matrix1Counter+=rows;
+                matrix1Counter+=columns;
 
                 //access second matrix
                 accessPositionTable.add(matrix2Counter);
-                matrix2Counter+=rows;
+                matrix2Counter+=columns;
 
                 //access third matrix
                 accessPositionTable.add(matrix3Counter);
-                matrix3Counter+=rows;
+                matrix3Counter+=columns;
 
             }
         }
@@ -445,5 +442,21 @@ public class Configuration {
 
     public void setConfigurationName(String configurationName) {
         this.configurationName = configurationName;
+    }
+
+    public ArrayList<Integer> getVirtMemoryPositionsAccesed() {
+        return virtMemoryPositionsAccesed;
+    }
+
+    public void setVirtMemoryPositionsAccesed(ArrayList<Integer> virtMemoryPositionsAccesed) {
+        this.virtMemoryPositionsAccesed = virtMemoryPositionsAccesed;
+    }
+
+    public ArrayList<ElementInfo> getReferenceTable() {
+        return referenceTable;
+    }
+
+    public void setReferenceTable(ArrayList<ElementInfo> referenceTable) {
+        this.referenceTable = referenceTable;
     }
 }

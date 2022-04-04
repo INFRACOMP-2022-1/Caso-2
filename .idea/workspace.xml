@@ -7,6 +7,8 @@
     <list default="true" id="4006985b-5ba6-47e6-b67e-8e4b86b13fbd" name="Changes" comment="thread 1 para ir recorriendo la lista de paginas generadas.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Page.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +111,7 @@
       <workItem from="1648926247340" duration="3937000" />
       <workItem from="1649008420082" duration="748000" />
       <workItem from="1649009188603" duration="18605000" />
-      <workItem from="1649041740638" duration="5999000" />
+      <workItem from="1649041740638" duration="9208000" />
     </task>
     <task id="LOCAL-00001" summary="thread 1 para ir recorriendo la lista de paginas generadas.">
       <created>1649008272943</created>
