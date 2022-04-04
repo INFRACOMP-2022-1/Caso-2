@@ -441,6 +441,48 @@ public class Configuration {
         return accessList;
     }
 
+    /**
+     * In order to persist the configurations over multiple excecutions the parameters to create the configuration need to be saved, in such a way that the configurations can be re-loaded
+     */
+    public void createRecoveryFile(){
+        //Save all the parameter data in a txt file
+        //int pageSize, int intSize, int rows, int columns, int runType, String configurationName
+        int PAGE_SIZE_PARAM = getPageSize();
+        int INT_SIZE_PARAM = getIntSize();
+        int ROWS_PARAM = getRows();
+        int COLUMNS_PARAM = getColumns();
+        int RUN_TYPE_PARAM = getRunType();
+        String CONFIGURATION_NAME_PARAM = getConfigurationName();
+
+        try {
+            String fileRoute = String.format("Caso2/configurations/%s.txt", CONFIGURATION_NAME_PARAM);
+            File resultFile = new File(fileRoute);
+            if (resultFile.createNewFile()) {
+                System.out.println("You can see the results in the following file in the outputfiles folder: " + resultFile.getName());
+
+                //GET FILE
+                FileWriter fileWriter = new FileWriter(fileRoute);
+
+                //WRITE PARAMETERS IN ORDER JUST SEPARATED BY THE LINE JUMP
+                fileWriter.write(PAGE_SIZE_PARAM);
+                fileWriter.write(INT_SIZE_PARAM);
+                fileWriter.write(ROWS_PARAM);
+                fileWriter.write(COLUMNS_PARAM);
+                fileWriter.write(RUN_TYPE_PARAM);
+                fileWriter.write(CONFIGURATION_NAME_PARAM);
+
+                fileWriter.close();
+            } else {
+                //IF THE CONFIG HAS ALREADY BEEN SAVED THERE IS NO NEED TO SAVE IT AGAIN
+                System.out.println("Configuration already exists. Moving on to the next one....");//THIS IS NOT AN ERROR MESSAGE
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public int getMatrixFillNumber() {
         return matrixFillNumber;
     }
