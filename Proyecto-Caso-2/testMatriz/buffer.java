@@ -1,4 +1,4 @@
-package Proyect;
+package testMatriz;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +23,18 @@ public class buffer
 	
 	ArrayList<ArrayList<Integer>> TP;
 	
+	
+	private int num_fallos;
+	
+
+	private int  cambio;
+	
+	private int  cambios;
+	
+	
+	private ArrayList<Integer> lili;
+
+	
 
 
 
@@ -41,6 +53,16 @@ public class buffer
 		this.marcos_pagina=marcos_pagina;
 
 		creacionPaginas();
+		
+		this.lili=new ArrayList<>();
+		
+		this.num_fallos=0;
+		
+		this.cambio=0;
+		this.cambios=0;
+		
+		
+		TP= new ArrayList<>();
 		
 			
 	}
@@ -122,11 +144,19 @@ public class buffer
 		
 public	void insert_page(int valor) {
 	
-	
 	Boolean mia	=true;	
 	
 	int num=0;
 	
+	
+	 cambio=0;
+	 
+	if (lili.size()<5  || lili.contains(valor)== true) {
+		
+	
+	if(comprobacion()) {
+		
+		
 	
 	while ( mia == true && ( num < TP.size())) {
 		
@@ -134,16 +164,81 @@ public	void insert_page(int valor) {
 		{
 			TP.get(num).set(0, valor);
 			mia=false;
-	        num+=1;
+			 cambios+=1;
+			 lili.add(valor);
 		}
+		
+		if(TP.get(num).get(0)== valor) {
+			
+			TP.get(num).set(1, 0);
+			mia=false;
+			
+		}
+
 		num+=1;
 
 	}
-
-	 num=0;
-	 mia=true;
-	 
+	
+	
+	num=0;
+	mia=true;
 	}
+	}
+	else {
+		
+		fallo_pagina(valor);
+	
+	}
+
+	}
+
+
+
+public void fallo_pagina( int llave) {
+	
+	int numero= 0;
+	int indicado=0;
+	
+	for(int j= 0; j< TP.size(); j++){
+		
+
+		 if (TP.get(j).get(1)> numero ) {
+			 
+			 numero= TP.get(j).get(1);
+			 indicado= TP.get(j).get(0);
+		 }
+	 
+		 }
+	
+	for(int jj= 0; jj< TP.size(); jj++){
+		
+
+		 if (TP.get(jj).get(0) == indicado  ) {
+			 
+			 TP.get(jj).set(0, llave);
+			 
+			 TP.get(jj).set(1, 0);
+			 
+			 
+			 
+			 
+		 }
+		 
+	}
+	
+	
+	num_fallos+=1;
+	
+	
+	
+	
+			
+	
+}
+
+
+	
+
 	
 	
 	
@@ -167,15 +262,19 @@ public	void insert_page(int valor) {
 		 for(int j= 0; j< TP.size(); j++){
 			 
 				 
-			 if (TP.get(j).get(0) == -1) {
+			 if (TP.get(j).get(0) == -1 || (TP.get(j).get(0) != -1)) {
 				 
 				 
-				 rta= true;			 
+				 rta= true;
+				 
+
+				 
+				 
 			 }
-	 }
-	 
-	 return rta;	
-}
+		 }
+		 
+		 return rta;	
+	}
 	
 	
 	
@@ -204,16 +303,8 @@ public	void insert_page(int valor) {
 		}
 	
 	
-	
-	
-	
-	
-	
-	
 
-
-
-
+	
 
 public void tablaa() {
 	
