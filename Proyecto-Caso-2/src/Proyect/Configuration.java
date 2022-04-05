@@ -397,8 +397,20 @@ public class Configuration {
         int currRow = 0;
         int currColumn = 0;
 
+
         ArrayList<Integer> accessList = listOfIntegers();
 
+
+        ArrayList<String> listOfArrayPositionsStr = new ArrayList<>();
+        for(int i = 0; i< rows; i++){
+            for(int j = 0; j < columns; j++){
+                listOfArrayPositionsStr.add((String.format("A:[%d-%d]",i,j)));
+                listOfArrayPositionsStr.add((String.format("B:[%d-%d]",i,j)));
+                listOfArrayPositionsStr.add((String.format("C:[%d-%d]",i,j)));
+            }
+        }
+
+        ArrayList<String> listOfAccesessStr = new ArrayList<>();
         for(int i = 0; i < (columns*rows)*3;i++){
             int position = accessList.get(i);//the position within pageTableSpecial to access
             ElementInfo currElement = pageTableSpecial.get(position);//gets the element and its info
@@ -407,23 +419,22 @@ public class Configuration {
 
             //Matrix A
             if(i%3==0){
-                System.out.println(String.format("A:[%d-%d],%d,%d",currRow,currColumn,currElementPage,currElementDisplacement));
-                if(i!=0){
-                    currRow+=1;
-                }
+                listOfAccesessStr.add(String.format(",%d,%d",currElementPage,currElementDisplacement));
             }
 
             //Matrix B
             if(i%3==1){
-                System.out.println(String.format("B:[%d-%d],%d,%d",currRow,currColumn,currElementPage,currElementDisplacement));
+                listOfAccesessStr.add(String.format(",%d,%d",currElementPage,currElementDisplacement));
             }
 
             //Matrix C
             if(i%3 ==2){
-                System.out.println(String.format("C:[%d-%d],%d,%d",currRow,currColumn,currElementPage,currElementDisplacement));
+                listOfAccesessStr.add(String.format(",%d,%d",currElementPage,currElementDisplacement));
             }
+        }
 
-            currColumn+=1;
+        for(int i = 0;i < 3*(rows*columns);i++){
+            System.out.println(listOfArrayPositionsStr.get(i)+listOfAccesessStr.get(i));
         }
     }
 
