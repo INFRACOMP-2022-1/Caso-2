@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4006985b-5ba6-47e6-b67e-8e4b86b13fbd" name="Changes" comment="thread 1 para ir recorriendo la lista de paginas generadas.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Option2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Option2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Thread1.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Thread1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Thread2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Thread2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +69,7 @@
       <recent name="C:\Users\jfede\Documents\VERO\INFRACOMP\Caso 2\Caso-2\Proyecto-Caso-2\report" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
+  <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mainProyect.Main" />
       <module name="Caso-2" />
@@ -95,7 +98,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -113,7 +115,8 @@
       <workItem from="1649008420082" duration="748000" />
       <workItem from="1649009188603" duration="18605000" />
       <workItem from="1649041740638" duration="13128000" />
-      <workItem from="1649086822072" duration="21518000" />
+      <workItem from="1649086822072" duration="21618000" />
+      <workItem from="1649173824926" duration="3671000" />
     </task>
     <task id="LOCAL-00001" summary="thread 1 para ir recorriendo la lista de paginas generadas.">
       <created>1649008272943</created>
