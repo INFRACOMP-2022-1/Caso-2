@@ -63,12 +63,12 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Main (1)">
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Proyect.Main" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="mainProyect.Main" />
       <module name="Caso-2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Proyect.*" />
+          <option name="PATTERN" value="mainProyect.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -77,11 +77,11 @@
       </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mainProyect.Main" />
+      <option name="MAIN_CLASS_NAME" value="Proyect.Main" />
       <module name="Caso-2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="mainProyect.*" />
+          <option name="PATTERN" value="Proyect.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -109,7 +109,7 @@
       <workItem from="1649008420082" duration="748000" />
       <workItem from="1649009188603" duration="18605000" />
       <workItem from="1649041740638" duration="13128000" />
-      <workItem from="1649086822072" duration="16387000" />
+      <workItem from="1649086822072" duration="17545000" />
     </task>
     <task id="LOCAL-00001" summary="thread 1 para ir recorriendo la lista de paginas generadas.">
       <created>1649008272943</created>
