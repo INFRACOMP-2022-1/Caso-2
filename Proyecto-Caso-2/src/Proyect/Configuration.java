@@ -312,7 +312,7 @@ public class Configuration {
      */
     public void createReport(){
         try {
-            String fileRoute = String.format("Caso2/outputFiles/%s.txt", configurationName);
+            String fileRoute = String.format("Proyecto-Caso-2/outputFiles/%s.txt", configurationName);
             File resultFile = new File(fileRoute);
             if (resultFile.createNewFile()) {
                 System.out.println("You can see the results in the following file in the outputfiles folder: " + resultFile.getName());
@@ -455,7 +455,7 @@ public class Configuration {
         String CONFIGURATION_NAME_PARAM = getConfigurationName();
 
         try {
-            String fileRoute = String.format("Caso2/configurations/%s.txt", CONFIGURATION_NAME_PARAM);
+            String fileRoute = String.format("Proyecto-Caso-2/configurations/%s.txt", CONFIGURATION_NAME_PARAM);
             File resultFile = new File(fileRoute);
             if (resultFile.createNewFile()) {
                 System.out.println("You can see the results in the following file in the outputfiles folder: " + resultFile.getName());

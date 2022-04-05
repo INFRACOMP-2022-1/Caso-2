@@ -1,5 +1,9 @@
 package Proyect;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,6 +23,9 @@ public class Main {
 
     public static void main(String[] args){
         System.out.println("Welcome to caso 2");
+
+        //Load pre existing configurations
+        loadExistingConfigurations();
 
         //Gets user option selection (1 or 2). This also checks if there is a file has been loaded in order to be able to chose option 2.
         int selectedOption = selectOptionPrompt();
@@ -255,5 +262,86 @@ public class Main {
             return false;
         }
         return true;
+    }
+
+    /**
+     * This loads all the pre-existing configurations that live in the configurations folder.
+     * This is how persistence is implemented in this case
+     */
+    public static void loadExistingConfigurations(){
+        String configDirRoute = "Proyecto-Caso-2/configurations";
+        File configurationsDirectory = new File(configDirRoute);
+        File[] directoryListings = configurationsDirectory.listFiles();
+        if(directoryListings != null){
+            for(int i = 0 ; i < directoryListings.length;i++){
+                loadSavedConfiguration(directoryListings[i]);
+                System.out.println(String.format("Configuration file %s has been loaded succesfully",directoryListings[i].getName()));
+            }
+
+            System.out.println("All configurations have been loaded");
+        }
+        else{
+            System.out.println("configurations directory is empty, no configurations to load.");
+        }
+    }
+
+    public static void loadSavedConfiguration(File fileToLoad) {
+        try {
+            FileReader fileReader = new FileReader(fileToLoad);
+
+            BufferedReader br = new BufferedReader(fileReader);
+            String currentLine = br.readLine();
+
+            int i = 0; //index of element read
+            //0 -> page size
+            //1 -> int size
+            //2 -> rows
+            //3 -> columns
+            //4 -> run type
+            //5 -> configuration name
+
+            int pageSizeConf = -1;
+            int intSizeConf= -1;
+            int rowsConf= -1;
+            int columnsConf= -1;
+            int runTypeConf= -1;
+            String configNameConf= "";
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                switch(i){
+                    case 0:
+                        pageSizeConf = Integer.parseInt(line);
+                        break;
+                    case 1:
+                        intSizeConf = Integer.parseInt(line);
+                        break;
+                    case 2:
+                        rowsConf =Integer.parseInt(line);
+                        break;
+                    case 3:
+                        columnsConf = Integer.parseInt(line);
+                        break;
+                    case 4:
+                        runTypeConf = Integer.parseInt(line);
+                        break;
+                    case 5:
+                        configNameConf = line;
+                        break;
+                }
+                i += 1;
+            }
+            br.close();
+
+            //Creates configuration with the given parameters
+            Configuration currentConfig = new Configuration(pageSizeConf,intSizeConf,rowsConf,columnsConf,runTypeConf,configNameConf);
+
+            //Adds configuration to the loadedConfiguration array
+            loadedConfigurations.add(currentConfig);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
