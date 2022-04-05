@@ -133,6 +133,47 @@ public class buffer
         }
 	
 	}
+
+
+	public synchronized void envejecer() throws InterruptedException{
+
+		while(comprobacion()==false ){
+            try {
+                wait();
+            }
+            catch (InterruptedException e){
+                e.printStackTrace();
+            }
+
+        }
+      makeolder();
+
+        synchronized (this){
+            notify();
+        }
+        //notify();//As we don't know if the previous thread is passive or active we have to notify just in case it was passive and its in waiting mode
+
+
+
+	}
+
+
+	public void makeolder() {
+		
+		for(int j= 0; j< TP.size(); j++){
+			
+			if (TP.get(j).get(0) != -1) {
+				
+				
+			   int numero= TP.get(j).get(1);
+			   numero+=1;
+				TP.get(j).set(1, numero);
+			}
+			
+		}
+	   }
+
+
 		
 		
 	
@@ -229,11 +270,7 @@ public void fallo_pagina( int llave) {
 	
 	num_fallos+=1;
 	
-	
-	
-	
-			
-	
+
 }
 
 
@@ -287,20 +324,7 @@ public void fallo_pagina( int llave) {
 	
 	
 	
-	public void envejecer() {
-		
-		 for(int j= 0; j< TP.size(); j++){
-			 
-			 if (TP.get(j).get(0) != -1) {
-				 
-				 
-				int numero= TP.get(j).get(1);
-				numero+=1;
-				 TP.get(j).set(1, numero);
-			 }
-			 
-		 }
-		}
+
 	
 	
 
