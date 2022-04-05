@@ -20,8 +20,8 @@ public class Thread2 extends Thread {
     /**
      * Constructor of thread 2. This is the thread that is responsible for the execution of the aging algorithm on the frame page table
      */
-    public Thread2() {
-
+    public Thread2(Buffer buffer) {
+        this.buffer = buffer;
     }
 
     //--------------------------------------------------------------------------

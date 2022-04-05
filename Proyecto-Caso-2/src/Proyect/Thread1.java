@@ -30,9 +30,9 @@ public class Thread1 extends Thread{
      * The constructor of thread 1.
      * @param referenceTable the table of references produced by the execution of the run type
      */
-    public Thread1(ArrayList<ElementInfo> referenceTable, Buffer buffer){
-        this.referenceTable = referenceTable;
+    public Thread1(Buffer buffer,ArrayList<ElementInfo> referenceTable){
         this.buffer = buffer;
+        this.referenceTable = referenceTable;
     }
 
     //--------------------------------------------------------------------------
