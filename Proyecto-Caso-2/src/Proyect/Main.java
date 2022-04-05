@@ -58,7 +58,7 @@ public class Main {
         String configurationName = scanner.nextLine().replaceAll("( )+", "").trim();
 
         //This does all option 1 work
-        Configuration newConfig = new Configuration(parameters.get(0),parameters.get(1),parameters.get(2),parameters.get(3),parameters.get(4),configurationName);
+        Configuration newConfig = new Configuration(parameters.get(0),parameters.get(1),parameters.get(2),parameters.get(3),parameters.get(4),configurationName,false);
 
         //Adds configutation to the list of available configurations
         loadedConfigurations.add(newConfig);
@@ -332,7 +332,7 @@ public class Main {
             br.close();
 
             //Creates configuration with the given parameters
-            Configuration currentConfig = new Configuration(pageSizeConf,intSizeConf,rowsConf,columnsConf,runTypeConf,configNameConf);
+            Configuration currentConfig = new Configuration(pageSizeConf,intSizeConf,rowsConf,columnsConf,runTypeConf,configNameConf,true);
 
             //Adds configuration to the loadedConfiguration array
             loadedConfigurations.add(currentConfig);

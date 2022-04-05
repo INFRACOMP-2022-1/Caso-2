@@ -31,6 +31,8 @@ public class Configuration {
 
     public String configurationName;
 
+    public boolean loadingExistingConfiguration;//basically tells if its a brand new configuration or if it is a loaded configuration. In practice is to avoid printing out the report results and creating a new report (the report already exists)
+
     /*
      * The number of pages needed to store all the integers of the matrices
      */
@@ -64,7 +66,7 @@ public class Configuration {
     // Constructor
     //--------------------------------------------------------------------------
 
-    public Configuration(int pageSize, int intSize, int rows, int columns, int runType, String configurationName){
+    public Configuration(int pageSize, int intSize, int rows, int columns, int runType, String configurationName, boolean loadingExistingConfiguration){
         //Save the parameters
         this.pageSize = pageSize;
         this.intSize = intSize;
@@ -111,14 +113,17 @@ public class Configuration {
         //Create reference table (used in option 2)
         createReferenceTable();
 
-        //Crear reporte
-        createReport();
+        //if its creating a brand new configuration this needs to be done, else its already been done before and there is no need to do  it again
+        if(loadingExistingConfiguration==false) {
+            //Crear reporte
+            createReport();
 
-        //Crear console output
-        consoleOutput();
+            //Crear console output
+            consoleOutput();
 
-        //Crear recovery file para futuras ejecuciones
-        createRecoveryFile();
+            //Crear recovery file para futuras ejecuciones
+            createRecoveryFile();
+        }
     }
 
     //--------------------------------------------------------------------------
