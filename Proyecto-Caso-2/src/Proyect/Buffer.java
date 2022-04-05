@@ -65,16 +65,13 @@ public class Buffer
 	public void  creacionPaginas()
 	{	
 		for(int i= 0; i < marcos_pagina; i++){
-
-	        	Integer l1= -1;
-	        	Integer l2= 0;	        	
-	        	ArrayList<Integer> l3= new ArrayList<>();
- 	
-	        	l3.add(l1);
-	        	l3.add(l2);
-
-	        	
-	        	TP.add(l3);
+	        	Integer pagina= -1;
+	        	Integer edad= 0;	        	
+	        	ArrayList<Integer> marco= new ArrayList<>();
+	        	marco.add(pagina);
+	        	marco.add(edad);
+        	
+	        	TP.add(marco);
 
 	        }
 
@@ -86,10 +83,10 @@ public class Buffer
 	/// guardo en una lista las casillas de mi matriz segun el recorrido, para despues saber en que pagina estan referenciadas
 	
 	
-	public synchronized static void adicionar_pagina(int valor) throws  InterruptedException {
+	public synchronized  void adicionar_pagina(int valor) throws  InterruptedException {
 		
 		
-		while( comprobacion()) {
+		while( comprobacion()== false ) {
 			
 			try {
                 wait();// Makes the incoming message wait (passive) until someone wakes it up
@@ -160,32 +157,30 @@ public class Buffer
 		
 public	void insert_page(int valor) {
 	
-	Boolean mia	=true;	
+	boolean centinela	=true;	
 	
 	int num=0;
-	
-	
-	 
-	if (contentPage.size()<4  || contentPage.contains(valor)== true) {
+
+	if (contentPage.size()<marcos_pagina  || contentPage.contains(valor)== true) {
 		
 	
 	if(comprobacion()) {
 		
 		
 	
-	while ( mia == true && ( num < TP.size())) {
+	while ( centinela == true && ( num < TP.size())) {
 		
 		if(TP.get(num).get(0)== -1) 
 		{
 			TP.get(num).set(0, valor);
-			mia=false;
+			centinela=false;
 			 contentPage.add(valor);
 		}
 		
 		if(TP.get(num).get(0)== valor) {
 			
 			TP.get(num).set(1, 0);
-			mia=false;
+			centinela=false;
 			
 		}
 
@@ -195,7 +190,7 @@ public	void insert_page(int valor) {
 	
 	
 	num=0;
-	mia=true;
+	centinela=true;
 	}
 	}
 	else {
@@ -282,12 +277,9 @@ public void fallo_pagina( int llave) {
 			 
 				 
 			 if (TP.get(j).get(0) == -1 || (TP.get(j).get(0) != -1)) {
-				 
-				 
+				 				 
 				 rta= true;
-				 
-
-				 
+						 
 				 
 			 }
 		 }

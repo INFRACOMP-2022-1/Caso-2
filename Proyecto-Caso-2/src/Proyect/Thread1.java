@@ -53,6 +53,7 @@ public class Thread1 extends Thread{
 
         for(int i = 0 ; i < referenceTable.size(); i++){
             ElementInfo currentElement = referenceTable.get(i);//Gets the element
+            
             int currentPageReference = currentElement.getPageNumber();//gets the page where the current element referenced is located
 
             try {

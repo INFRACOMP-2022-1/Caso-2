@@ -21,7 +21,7 @@ public class Option2 {
         this.pageFrameSize = pageFrameSize;
 
         //Create the buffer
-        Buffer buffer = new Buffer();
+        Buffer buffer = new Buffer(pageFrameSize);
 
         //Create the threads
         Thread1 thread1 = new Thread1(buffer,configuration.getReferenceTable());
