@@ -134,7 +134,7 @@ public class buffer {
     public void envejecer() {
 
         for (int j = 0; j < TP.size(); j++) {
-            if (TP.get(j).get(0) != -1) {
+            if (TP.get(j).get(0) != -1){
                 int numero = TP.get(j).get(1);
                 numero += 1;
                 TP.get(j).set(1, numero);
