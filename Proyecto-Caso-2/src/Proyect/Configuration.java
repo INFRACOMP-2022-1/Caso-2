@@ -337,19 +337,28 @@ public class Configuration {
             fileWriter.write("\n");
 
             //WRITE REPORT CONTENT
-            fileWriter.write(String.format("TP=%d",pageSize));
-            fileWriter.write(String.format("TE=%d",intSize));
-            fileWriter.write(String.format("NF=%d",rows));
-            fileWriter.write(String.format("NC=%d",columns));
-            fileWriter.write(String.format("TR=%d",runType));
-            fileWriter.write(String.format("NP=%d",pageNumber));
-            fileWriter.write(String.format("NR=%d",totalReferences));
+            fileWriter.write(String.format("TP=%d\n",pageSize));
+            fileWriter.write(String.format("TE=%d\n",intSize));
+            fileWriter.write(String.format("NF=%d\n",rows));
+            fileWriter.write(String.format("NC=%d\n",columns));
+            fileWriter.write(String.format("TR=%d\n",runType));
+            fileWriter.write(String.format("NP=%d\n",pageNumber));
+            fileWriter.write(String.format("NR=%d\n",totalReferences));
 
-            int currRow = 0;
-            int currColumn = 0;
 
             ArrayList<Integer> accessList = listOfIntegers();
 
+
+            ArrayList<String> listOfArrayPositionsStr = new ArrayList<>();
+            for(int i = 0; i< rows; i++){
+                for(int j = 0; j < columns; j++){
+                    listOfArrayPositionsStr.add((String.format("A:[%d-%d]",i,j)));
+                    listOfArrayPositionsStr.add((String.format("B:[%d-%d]",i,j)));
+                    listOfArrayPositionsStr.add((String.format("C:[%d-%d]",i,j)));
+                }
+            }
+
+            ArrayList<String> listOfAccesessStr = new ArrayList<>();
             for(int i = 0; i < (columns*rows)*3;i++){
                 int position = accessList.get(i);//the position within pageTableSpecial to access
                 ElementInfo currElement = pageTableSpecial.get(position);//gets the element and its info
@@ -358,24 +367,25 @@ public class Configuration {
 
                 //Matrix A
                 if(i%3==0){
-                    fileWriter.write(String.format("A:[%d-%d],%d,%d",currRow,currColumn,currElementPage,currElementDisplacement));
-                    if(i!=0){
-                        currRow+=1;
-                    }
+                    listOfAccesessStr.add(String.format(",%d,%d",currElementPage,currElementDisplacement));
                 }
 
                 //Matrix B
                 if(i%3==1){
-                    fileWriter.write(String.format("B:[%d-%d],%d,%d",currRow,currColumn,currElementPage,currElementDisplacement));
+                    listOfAccesessStr.add(String.format(",%d,%d",currElementPage,currElementDisplacement));
                 }
 
                 //Matrix C
                 if(i%3 ==2){
-                    fileWriter.write(String.format("C:[%d-%d],%d,%d",currRow,currColumn,currElementPage,currElementDisplacement));
+                    listOfAccesessStr.add(String.format(",%d,%d",currElementPage,currElementDisplacement));
                 }
-
-                currColumn+=1;
             }
+
+            for(int i = 0;i < 3*(rows*columns);i++){
+                fileWriter.write(listOfArrayPositionsStr.get(i)+listOfAccesessStr.get(i)+"\n");
+            }
+
+            fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
