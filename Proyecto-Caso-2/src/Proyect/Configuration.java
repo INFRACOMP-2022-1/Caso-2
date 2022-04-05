@@ -111,11 +111,13 @@ public class Configuration {
         //Create reference table (used in option 2)
         createReferenceTable();
 
-        //TODO:Crear reporte -> Santiago
+        //Crear reporte
         createReport();
-        //TODO: Crear console output para verificar de que todo fue creado correctamente
+
+        //Crear console output
         consoleOutput();
 
+        //Crear recovery file para futuras ejecuciones
         createRecoveryFile();
     }
 
@@ -473,12 +475,12 @@ public class Configuration {
                 FileWriter fileWriter = new FileWriter(fileRoute);
 
                 //WRITE PARAMETERS IN ORDER JUST SEPARATED BY THE LINE JUMP
-                fileWriter.write(PAGE_SIZE_PARAM);
-                fileWriter.write(INT_SIZE_PARAM);
-                fileWriter.write(ROWS_PARAM);
-                fileWriter.write(COLUMNS_PARAM);
-                fileWriter.write(RUN_TYPE_PARAM);
-                fileWriter.write(CONFIGURATION_NAME_PARAM);
+                fileWriter.write(PAGE_SIZE_PARAM+"\n");
+                fileWriter.write(INT_SIZE_PARAM+"\n");
+                fileWriter.write(ROWS_PARAM+"\n");
+                fileWriter.write(COLUMNS_PARAM+"\n");
+                fileWriter.write(RUN_TYPE_PARAM+"\n");
+                fileWriter.write(CONFIGURATION_NAME_PARAM+"\n");
 
                 fileWriter.close();
             } else {

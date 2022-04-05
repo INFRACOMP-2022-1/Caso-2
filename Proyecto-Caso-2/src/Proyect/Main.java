@@ -288,9 +288,7 @@ public class Main {
     public static void loadSavedConfiguration(File fileToLoad) {
         try {
             FileReader fileReader = new FileReader(fileToLoad);
-
             BufferedReader br = new BufferedReader(fileReader);
-            String currentLine = br.readLine();
 
             int i = 0; //index of element read
             //0 -> page size
