@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4006985b-5ba6-47e6-b67e-8e4b86b13fbd" name="Changes" comment="thread 1 para ir recorriendo la lista de paginas generadas.">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Proyecto-Caso-2/testMatriz/Option2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Option2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Option2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +44,10 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Caso 1/Caso1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Proyecto-Caso-2/testMatriz" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -55,6 +59,9 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jfede\Documents\VERO\INFRACOMP\Caso 2\Caso-2\Proyecto-Caso-2\testMatriz" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\jfede\Documents\VERO\INFRACOMP\Caso 2\Caso-2\Proyecto-Caso-2\src\Proyect" />
       <recent name="C:\Users\jfede\Documents\VERO\INFRACOMP\Caso 2\Caso-2\Proyecto-Caso-2\src" />
@@ -109,7 +116,7 @@
       <workItem from="1649008420082" duration="748000" />
       <workItem from="1649009188603" duration="18605000" />
       <workItem from="1649041740638" duration="13128000" />
-      <workItem from="1649086822072" duration="17545000" />
+      <workItem from="1649086822072" duration="17939000" />
     </task>
     <task id="LOCAL-00001" summary="thread 1 para ir recorriendo la lista de paginas generadas.">
       <created>1649008272943</created>
