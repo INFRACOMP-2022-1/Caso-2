@@ -25,7 +25,7 @@ public class Option2 {
 
         //Create the threads
         Thread1 thread1 = new Thread1(buffer,configuration.getReferenceTable());
-        Thread2 thread2 = new Thread2(buffer);
+        Thread2 thread2 = new Thread2(buffer,thread1.getIsThreadAlive());
 
         //Start the threads
         thread1.start();//TODO: Terminar de crear la clase thread1

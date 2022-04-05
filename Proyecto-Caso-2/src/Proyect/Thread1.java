@@ -22,6 +22,11 @@ public class Thread1 extends Thread{
      */
     public ArrayList<ElementInfo> referenceTable;
 
+    /*
+    If the current thread is still runing or not
+     */
+    public boolean threadAlive;
+
     //--------------------------------------------------------------------------
     // Constructor
     //--------------------------------------------------------------------------
@@ -33,6 +38,7 @@ public class Thread1 extends Thread{
     public Thread1(Buffer buffer,ArrayList<ElementInfo> referenceTable){
         this.buffer = buffer;
         this.referenceTable = referenceTable;
+        this.threadAlive = true;
     }
 
     //--------------------------------------------------------------------------
@@ -58,5 +64,19 @@ public class Thread1 extends Thread{
                 e.printStackTrace();
             }
         }
+        threadAlive = false;//this is used to signal to thread 2 that thread 1 has finished its execution
     }
+
+    public Buffer getBuffer() {
+        return buffer;
+    }
+
+    public ArrayList<ElementInfo> getReferenceTable() {
+        return referenceTable;
+    }
+
+    public boolean getIsThreadAlive() {
+        return threadAlive;
+    }
+
 }
