@@ -50,18 +50,26 @@ public class Thread1 extends Thread{
     @Override
     public void run(){
         //TODO: Contenido del run. Se muere cuando se le terminaron las paginas que revisar
+
         for(int i = 0 ; i < referenceTable.size(); i++){
             ElementInfo currentElement = referenceTable.get(i);//Gets the element
             int currentPageReference = currentElement.getPageNumber();//gets the page where the current element referenced is located
 
-            updatePageFrameTable(currentPageReference);
+            try {
+                updatePageFrameTable(currentPageReference);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
         threadAlive = false;//this is used to signal to thread 2 that thread 1 has finished its execution
     }
 
-    public void updatePageFrameTable(int currentPageReference){
-        //TODO: Llamar al metodo sincronziado en el buffer que intenta acceder la tabla de paginas para actualizar lso valroes. Seguramente el metodo que directamente accede no esta sincronizado pero llama otros elementos dentro de buffer que monitorean el acceso a la tabla. Ver como funciona eso
-        //buffer.addPageMethod(currentPageReference);
+
+
+    public void updatePageFrameTable(int currentPageReference) throws InterruptedException{
+        
+        Buffer.adicionar_pagina(currentPageReference);
 
         //Sends the thread to sleep for to milliseconds after adding a page on the frame page table
         try {

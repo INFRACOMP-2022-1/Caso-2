@@ -19,7 +19,6 @@ public class buffer
 	private HashMap <Integer, ArrayList<Integer>> map ;
 
 	
-	private ArrayList<ArrayList<Integer>> lista_mayor;
 	
 	ArrayList<ArrayList<Integer>> TP;
 	
@@ -237,6 +236,7 @@ public	void insert_page(int valor) {
 
 public void fallo_pagina( int llave) {
 	
+	
 	int numero= 0;
 	int indicado=0;
 	
@@ -251,26 +251,34 @@ public void fallo_pagina( int llave) {
 	 
 		 }
 	
+	for(int tt= 0; tt< lili.size(); tt++){
+		
+		if (lili.get(tt)==indicado) {
+			
+			lili.remove(tt);
+		}
+		
+		
+	}
+	
+	
+	
+	
 	for(int jj= 0; jj< TP.size(); jj++){
 		
-
 		 if (TP.get(jj).get(0) == indicado  ) {
 			 
 			 TP.get(jj).set(0, llave);
 			 
 			 TP.get(jj).set(1, 0);
-			 
-			 
-			 
-			 
+			 lili.add(llave);		 
 		 }
-		 
+	 
 	}
+		
+	 num_fallos+=1;
+			
 	
-	
-	num_fallos+=1;
-	
-
 }
 
 
