@@ -32,9 +32,6 @@ public class t1  extends Thread{
    public void run(){
 	   
 	    for(int j= 0; j< wordListSend.size(); j++){
-	    	
-	    	
-
 				try {
 					emmitMessage(wordListSend.get(j));
 					
@@ -43,12 +40,7 @@ public class t1  extends Thread{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			
-		   
 	   }
-	   
-	   
-	   
    }
     
    

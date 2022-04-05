@@ -63,7 +63,228 @@ public class buffer {
         synchronized (this) {
             notify();
         }
-    }
+	}
+
+
+	public synchronized void envejecer() throws InterruptedException{
+
+		while(comprobacion()==false ){
+            try {
+                wait();
+            }
+            catch (InterruptedException e){
+                e.printStackTrace();
+            }
+
+        }
+      makeolder();
+
+        synchronized (this){
+            notify();
+        }
+        //notify();//As we don't know if the previous thread is passive or active we have to notify just in case it was passive and its in waiting mode
+
+
+
+	}
+
+
+	public void makeolder() {
+		
+		for(int j= 0; j< TP.size(); j++){
+			
+			if (TP.get(j).get(0) != -1) {
+				
+				
+			   int numero= TP.get(j).get(1);
+			   numero+=1;
+				TP.get(j).set(1, numero);
+			}
+			
+		}
+	   }
+
+
+		
+		
+	
+	
+	
+	
+	
+		
+		
+public	void insert_page(int valor) {
+	
+	Boolean mia	=true;	
+	
+	int num=0;
+	
+	
+	 cambio=0;
+	 
+	if (lili.size()<5  || lili.contains(valor)== true) {
+		
+	
+	if(comprobacion()) {
+		
+		
+	
+	while ( mia == true && ( num < TP.size())) {
+		
+		if(TP.get(num).get(0)== -1) 
+		{
+			TP.get(num).set(0, valor);
+			mia=false;
+			 cambios+=1;
+			 lili.add(valor);
+		}
+		
+		if(TP.get(num).get(0)== valor) {
+			
+			TP.get(num).set(1, 0);
+			mia=false;
+			
+		}
+
+		num+=1;
+
+	}
+	
+	
+	num=0;
+	mia=true;
+	}
+	}
+	else {
+		
+		fallo_pagina(valor);
+	
+	}
+
+	}
+
+
+
+public void fallo_pagina( int llave) {
+	
+	int numero= 0;
+	int indicado=0;
+	
+	for(int j= 0; j< TP.size(); j++){
+		
+
+		 if (TP.get(j).get(1)> numero ) {
+			 
+			 numero= TP.get(j).get(1);
+			 indicado= TP.get(j).get(0);
+		 }
+	 
+		 }
+	
+	for(int jj= 0; jj< TP.size(); jj++){
+		
+
+		 if (TP.get(jj).get(0) == indicado  ) {
+			 
+			 TP.get(jj).set(0, llave);
+			 
+			 TP.get(jj).set(1, 0);
+			 
+			 
+			 
+			 
+		 }
+		 
+	}
+	
+	
+	num_fallos+=1;
+	
+
+}
+
+
+	
+
+	
+	
+	
+
+	
+	
+	
+
+		
+		
+		
+		
+		
+	
+	
+	public boolean  comprobacion() {
+	
+		boolean rta = false;
+		
+		
+		 for(int j= 0; j< TP.size(); j++){
+			 
+				 
+			 if (TP.get(j).get(0) == -1 || (TP.get(j).get(0) != -1)) {
+				 
+				 
+				 rta= true;
+				 
+
+				 
+				 
+			 }
+		 }
+		 
+		 return rta;	
+	}
+	
+	
+	
+	
+	
+  
+	
+    
+	
+	
+	
+	
+
+	
+	
+
+	
+
+public void tablaa() {
+	
+	System.out.println(TP);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+	
+
+
+
+>>>>>>> 1e6a3edf50b2d94637597a6287ed5152c616e1cf
 
     public void insert_page(int valor) {
         Boolean mia = true;
