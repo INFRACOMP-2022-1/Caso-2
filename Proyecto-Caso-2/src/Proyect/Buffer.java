@@ -187,8 +187,7 @@ public	void insert_page(int valor) {
 		num+=1;
 
 	}
-	
-	
+
 	num=0;
 	centinela=true;
 	}
@@ -293,7 +292,11 @@ public void fallo_pagina( int llave) {
 	
   
 	
-    
+    public int fallosdepagina()	
+{
+	return num_fallos;
+}
+	
 	
 	
 	
