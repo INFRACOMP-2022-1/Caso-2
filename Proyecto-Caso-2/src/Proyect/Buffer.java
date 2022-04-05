@@ -26,6 +26,11 @@ public class Buffer
 	private ArrayList<Integer>  contentPage;
 
 
+
+
+
+    
+
 	
 	// to create a a buffer we need the size of that memory, thanks to the "marcos_pagina" we can determinar that size
 	public Buffer(int marcos_pagina) 
