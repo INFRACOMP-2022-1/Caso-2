@@ -92,6 +92,11 @@ public class Configuration {
         //Reference table(track) keeps track de que paginas son referenciadas para crear la matriz 3
         referenceTable = new ArrayList<>();
 
+        //initiate matrices
+        matrix1 = new int[rows][columns];
+        matrix2 = new int[rows][columns];
+        matrix3 = new int[rows][columns];
+
         //Create matrix 1,2,3 con el recorrido indicado. Also
         createMatrices();
 
@@ -110,6 +115,8 @@ public class Configuration {
         createReport();
         //TODO: Crear console output para verificar de que todo fue creado correctamente
         consoleOutput();
+
+        createRecoveryFile();
     }
 
     //--------------------------------------------------------------------------
@@ -184,6 +191,7 @@ public class Configuration {
                 //if the current page capacity isnt meet then add the element to the current page
                 if(curNumElementsInPage < capacity){
                     currentPage.addInteger(virtualMemory.get(i));
+                    curNumElementsInPage +=1;
                 }
                 //when the page capacity has been filled add the current page to the table, and create a new empty page and add the current int to it
                 else{
@@ -191,6 +199,7 @@ public class Configuration {
                     currentPageNumber +=1;
                     currentPage = new Page(intSize,pageSize,pageCapacity,currentPageNumber);
                     currentPage.addInteger(virtualMemory.get(i));
+                    curNumElementsInPage = 1;
                 }
 
                 //This handles the case that the number of elements in virtual memory don't completely fill the page. This makes sure the unfilled last page adds
@@ -480,7 +489,6 @@ public class Configuration {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public int getMatrixFillNumber() {

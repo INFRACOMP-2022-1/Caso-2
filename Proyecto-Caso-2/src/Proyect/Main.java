@@ -197,7 +197,7 @@ public class Main {
             System.out.println("Row size needs to be an integer. Please try again.");
             runTypeUnparsed = scanner.nextLine();
         }
-        while(Integer.parseInt(runTypeUnparsed)!= 1 ||Integer.parseInt(runTypeUnparsed)!= 2){
+        while(!runTypeUnparsed.equals("1") && !runTypeUnparsed.equals("2")){
             System.out.println("Need to select 1 or 2 for tipo de recorrido.");
             runTypeUnparsed = scanner.nextLine();
         }
@@ -224,7 +224,7 @@ public class Main {
     public static int selectOptionPrompt(){
         System.out.println("Please select the option you want to run: ");
         System.out.println("1. Option 1");
-        if(loadedConfigurations.isEmpty()){
+        if(!loadedConfigurations.isEmpty()){
             System.out.println("2. Option 2");
         }
 
@@ -233,7 +233,7 @@ public class Main {
         int selectedOption = 1;//default is 1
 
         //if the option isnt either 1 or 2 it isnt valid.
-        while(!userInput.equals("1") || !userInput.equals("2") || !userInput.equals("2") && loadedConfigurations.isEmpty()){
+        while(!userInput.equals("1") && !userInput.equals("2") || userInput.equals("2") && loadedConfigurations.isEmpty()){
             if(userInput.equals("2") && loadedConfigurations.isEmpty()){
                 System.out.println("No configurations have been loaded, please create configuration file with option 1.");
             }
