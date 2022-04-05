@@ -1,95 +1,349 @@
-package Proyect;
+package main;
 
 import java.util.ArrayList;
-
-public class Option2 {
-
-    //--------------------------------------------------------------------------
-    // Attributes
-    //--------------------------------------------------------------------------
-
-    public Configuration configuration;
-    public int pageFrameSize;
-    private ArrayList<ArrayList<Integer>> TPAGES ;
+import java.util.HashMap;
+import java.util. concurrent. ThreadLocalRandom;
 
 
 
-    //--------------------------------------------------------------------------
-    // Constructor
-    //--------------------------------------------------------------------------
-
-    public Option2(Configuration configuration, int pageFrameSize) {
-        this.configuration = configuration;
-        this.pageFrameSize = pageFrameSize;
-        creacionPaginas(pageFrameSize);
+public class buffer
 
 
 
-    }
+{
+	
+	
+	private  int marcos_pagina;
 
-    //--------------------------------------------------------------------------
-    // Methods
-    //--------------------------------------------------------------------------
+	
+	private HashMap <Integer, ArrayList<Integer>> map ;
+
+	
+	private ArrayList<ArrayList<Integer>> lista_mayor;
+	
+	ArrayList<ArrayList<Integer>> TP;
+	
+	
+	private int num_fallos;
+	
+
+	private int  cambio;
+	
+	private int  cambios;
+	
+	
+	private ArrayList<Integer> lili;
+
+	
 
 
 
-    public synchronized void  addPage(String message) throws  InterruptedException{
 
-        while( comprobacion()){
-            try {
+	
+
+	
+	
+
+
+
+	
+	
+	public buffer(int marcos_pagina) 
+	{
+		this.marcos_pagina=marcos_pagina;
+
+		creacionPaginas();
+		
+		this.lili=new ArrayList<>();
+		
+		this.num_fallos=0;
+		
+		this.cambio=0;
+		this.cambios=0;
+		
+		
+		TP= new ArrayList<>();
+		
+			
+	}
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+/// paginas_divisiones DETERMINA EL TAMANO DE UNA PAGINA
+
+	public void  creacionPaginas()
+	{	
+		for(int i= 0; i < marcos_pagina; i++){
+
+	        	Integer l1= -1;
+	        	Integer l2= 0;	        	
+	        	ArrayList<Integer> l3= new ArrayList<>();
+ 	
+	        	l3.add(l1);
+	        	l3.add(l2);
+
+	        	
+	        	TP.add(l3);
+
+	        }
+	        
+
+	        
+	        
+
+		
+
+
+	}
+	
+	
+	
+	
+	/// guardo en una lista las casillas de mi matriz segun el recorrido, para despues saber en que pagina estan referenciadas
+	
+	
+	public synchronized void adicionar_pagina(int valor) throws  InterruptedException {
+		
+		
+		while( comprobacion()) {
+			
+			try {
                 wait();// Makes the incoming message wait (passive) until someone wakes it up
             }
             catch (InterruptedException e){
                 e.printStackTrace();
             }
-        }
-
-
-        addpage(message); //Stores the received message in the buffer content linked list
-
-        synchronized (this){
+			
+		}
+		
+		insert_page(valor);
+		
+		
+		synchronized (this){
             notify();
         }
-        //notify(); //notifies a random producerConsumer in monitor queue to wake up
-    }
-
-
-
-    public boolean  comprobacion() {
-        boolean rta = false;
-        
-         for(int j= 0; j< TPAGES.size(); j++){
-    
-             if (TPAGES.get(j).get(0) == 0) {
-                rta= true;
-            
-             }
-         }
-         return rta;      
-    }
-
-
-  
-
-   
-
-
-
-    public void  creacionPaginas(int num)
-	{	
-        for(int i= 0; i < num; i++){
-
-	        	Integer l1= 0;
-	        	Integer l2= 0;      	
-	        	ArrayList<Integer> l3= new ArrayList<>();	
-	        	l3.add(l1);
-	        	l3.add(l2);   	
-	        	TPAGES.add(l3);
-	        }
-System.out.println(TPAGES);
 	
+	}
+		
+		
+	
+	
+	
+	
+	
+		
+		
+public	void insert_page(int valor) {
+	
+	Boolean mia	=true;	
+	
+	int num=0;
+	
+	
+	 cambio=0;
+	 
+	if (lili.size()<5  || lili.contains(valor)== true) {
+		
+	
+	if(comprobacion()) {
+		
+		
+	
+	while ( mia == true && ( num < TP.size())) {
+		
+		if(TP.get(num).get(0)== -1) 
+		{
+			TP.get(num).set(0, valor);
+			mia=false;
+			 cambios+=1;
+			 lili.add(valor);
+		}
+		
+		if(TP.get(num).get(0)== valor) {
+			
+			TP.get(num).set(1, 0);
+			mia=false;
+			
+		}
+
+		num+=1;
 
 	}
+	
+	
+	num=0;
+	mia=true;
+	}
+	}
+	else {
+		
+		fallo_pagina(valor);
+	
+	}
+
+	}
+
+
+
+public void fallo_pagina( int llave) {
+	
+	int numero= 0;
+	int indicado=0;
+	
+	for(int j= 0; j< TP.size(); j++){
+		
+
+		 if (TP.get(j).get(1)> numero ) {
+			 
+			 numero= TP.get(j).get(1);
+			 indicado= TP.get(j).get(0);
+		 }
+	 
+		 }
+	
+	for(int jj= 0; jj< TP.size(); jj++){
+		
+
+		 if (TP.get(jj).get(0) == indicado  ) {
+			 
+			 TP.get(jj).set(0, llave);
+			 
+			 TP.get(jj).set(1, 0);
+			 
+			 
+			 
+			 
+		 }
+		 
+	}
+	
+	
+	num_fallos+=1;
+	
+	
+	
+	
+			
+	
+}
+
+
+	
+
+	
+	
+	
+
+	
+	
+	
+
+		
+		
+		
+		
+		
+	
+	
+	public boolean  comprobacion() {
+	
+		boolean rta = false;
+		
+		
+		 for(int j= 0; j< TP.size(); j++){
+			 
+				 
+			 if (TP.get(j).get(0) == -1 || (TP.get(j).get(0) != -1)) {
+				 
+				 
+				 rta= true;
+				 
+
+				 
+				 
+			 }
+		 }
+		 
+		 return rta;	
+	}
+	
+	
+	
+	
+	
+  
+	
+    
+	
+	
+	
+	
+	public void envejecer() {
+		
+		 for(int j= 0; j< TP.size(); j++){
+			 
+			 if (TP.get(j).get(0) != -1) {
+				 
+				 
+				int numero= TP.get(j).get(1);
+				numero+=1;
+				 TP.get(j).set(1, numero);
+			 }
+			 
+		 }
+		}
+	
+	
+
+	
+
+public void tablaa() {
+	
+	System.out.println(TP);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
