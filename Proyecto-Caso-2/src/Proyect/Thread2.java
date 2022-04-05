@@ -1,5 +1,8 @@
 package Proyect;
 
+/**
+ * This page is responsible for executing the aging algorithm on the frame page table.
+ */
 public class Thread2 extends Thread {
     //--------------------------------------------------------------------------
     // Attributes

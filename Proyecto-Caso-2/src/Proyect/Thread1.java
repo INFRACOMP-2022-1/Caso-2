@@ -1,6 +1,5 @@
 package Proyect;
 
-import javax.swing.text.Element;
 import java.util.ArrayList;
 
 /**
@@ -51,6 +50,13 @@ public class Thread1 extends Thread{
 
             //TODO: Llamar al metodo sincronziado en el buffer que intenta acceder la tabla de paginas para actualizar lso valroes. Seguramente el metodo que directamente accede no esta sincronizado pero llama otros elementos dentro de buffer que monitorean el acceso a la tabla. Ver como funciona eso
             //buffer.addPageMethod(currentPageReference);
+
+            //Sends the thread to sleep for to milliseconds after adding a page on the frame page table
+            try {
+                Thread.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
