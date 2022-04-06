@@ -1,0 +1,18 @@
+
+REPORT
+CONFIGURATION:
+TP=64
+TE=4
+NF=16
+NC=16
+TR=2
+NP=48
+NR=768
+
+MARCOS DE PAGINA:
+Page frames(Marcos de pagina): 28
+
+FALLOS DE PAGINA:
+Page errors(Fallos de pagina): 740
+
+For more information on the configuration file you can check in option1OutputFiles/T-64.txt
