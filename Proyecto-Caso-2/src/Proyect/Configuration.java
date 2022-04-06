@@ -328,10 +328,10 @@ public class Configuration {
      */
     public void createReport(){
         try {
-            String fileRoute = String.format("Proyecto-Caso-2/outputFiles/%s.txt", configurationName);
+            String fileRoute = String.format("Proyecto-Caso-2/option1OutputFiles/%s.txt", configurationName);
             File resultFile = new File(fileRoute);
             if (resultFile.createNewFile()) {
-                System.out.println("You can see the results in the following file in the outputfiles folder: " + resultFile.getName());
+                System.out.println("You can see the results in the following file in the option1OutputFiles folder: " + resultFile.getName());
             } else {
                 System.out.println("File already exists.");
             }
@@ -495,7 +495,7 @@ public class Configuration {
             String fileRoute = String.format("Proyecto-Caso-2/configurations/%s.txt", CONFIGURATION_NAME_PARAM);
             File resultFile = new File(fileRoute);
             if (resultFile.createNewFile()) {
-                System.out.println("You can see the results in the following file in the outputfiles folder: " + resultFile.getName());
+                System.out.println("You can see the results in the following file in the configurations folder: " + resultFile.getName());
 
                 //GET FILE
                 FileWriter fileWriter = new FileWriter(fileRoute);
