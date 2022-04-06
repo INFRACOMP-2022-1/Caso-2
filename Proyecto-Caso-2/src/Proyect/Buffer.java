@@ -38,6 +38,7 @@ public class Buffer {
      * @param pageFrames the number of page frames for the page frame table
      */
     public Buffer(int pageFrames) {
+
         this.pageFrames = pageFrames;//marcos pagina
         this.pageFrameTable = new ArrayList<>();//TP in the original buffer
         this.pageErrors = 0;//Num fallos
@@ -51,14 +52,7 @@ public class Buffer {
     //--------------------------------------------------------------------------
 
     public synchronized void addPage(int pageNumber){
-        while(!canAddNewPage()){
-           try {
-               wait();
-           }
-           catch (InterruptedException e){
-               e.printStackTrace();
-           }
-        }
+        
 
         insertPage(pageNumber);
 
@@ -67,10 +61,13 @@ public class Buffer {
         }
     }
 
+
+
     public synchronized void age(){
-        while(!canAddNewPage()){
+        
+        while(check_put( )== false){
             try {
-                wait();//incoming message will wait until someone wakes it up
+                wait();
             }
             catch (InterruptedException e){
                 e.printStackTrace();
@@ -134,30 +131,36 @@ public class Buffer {
     }
 
 
-    //TODO: REMPLAZAR ESO POR LOS NUEVOS
     /**
      * Checks if it is possible to add a new page to the page frame table without generating a memory failure (fallo de pagina)
      * comprobación() in original buffer
      * @return boolean. True if it is possible to add a new page, false the contrary.
      */
-    public boolean gicanAddNewPage(){
 
-        for(int i =0;i < pageFrameTable.size(); i++){
-            //TODO: V -> No entiendo tanto la logica de este if , no seria siempre true?
-            if(getPageInFrameTable(i) == -1|| getPageInFrameTable(i) != -1){
-                return true;
-            }
+    public boolean  check_older(int page ) {
+
+		if (pageFrameTable.size() == pageFrames  &&  contentTable.contains(page) == false) {
+			
+			return true;
+			
+		}
+		return false;
+	
+	}
+	
+
+    public boolean  check_put( ) {
+	
+        for(int j= 0; j< pageFrameTable.size(); j++){
+        
+            if (pageFrameTable.get(j).get(0) != -1) {
+                return true;			 
+            }               
         }
-        return false;
-    }
+       return false;	
+   }
 
-    public boolean checkPut(){
-        return true;
-    }
-
-    public boolean checkOlder(){
-        return true;
-    }
+ 
 
 
     public void insertPage(int pageNumber){
@@ -165,7 +168,7 @@ public class Buffer {
         int num = 0;
 
         if(contentTable.size()< pageFrames || contentTable.contains(pageNumber) == true){
-            if(canAddNewPage()){
+
                 while(centinel == true && num < pageFrameTable.size()){
                     //finds empty space where it can add the page
                     if(getPageInFrameTable(num) == -1){
@@ -183,18 +186,17 @@ public class Buffer {
                     num += 1;
                 }
 
-                //TODO: V -> Tampoco entiendo la nesecidad de esto
                 num = 0;
                 centinel = true;
-            }
-            else {
-                pageError(pageNumber);
-            }
+               
+            
 
+        }
+        else {
+            pageError(pageNumber);
         }
     }
 
-    //TODO: V -> Explicame todo este metodo
     public void pageError(int pageNumber){
         int num = 0;
         int indicated = 0;
