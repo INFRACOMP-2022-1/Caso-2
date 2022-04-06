@@ -131,7 +131,6 @@ public class Buffer {
     }
 
 
-    //TODO: REMPLAZAR ESO POR LOS NUEVOS
     /**
      * Checks if it is possible to add a new page to the page frame table without generating a memory failure (fallo de pagina)
      * comprobación() in original buffer
@@ -186,7 +185,6 @@ public class Buffer {
                     num += 1;
                 }
 
-                //TODO: V -> Tampoco entiendo la nesecidad de esto
                 num = 0;
                 centinel = true;
                
@@ -198,7 +196,6 @@ public class Buffer {
         }
     }
 
-    //TODO: V -> Explicame todo este metodo
     public void pageError(int pageNumber){
         int num = 0;
         int indicated = 0;
