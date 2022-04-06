@@ -1,139 +1,346 @@
 package Proyect;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Buffer {
-    //--------------------------------------------------------------------------
-    // Attributes
-    //--------------------------------------------------------------------------
 
-    /*
-    Page frame numbers. Sets the limit of page references a page frame can hava
-     */
-    public int pageFrames;
 
-    /*
-    This table contains an array of pages and the time since the page was last refrenced
-    [[pageNumberReferenced,timeSinceLastReference],...,[,]]
-     */
-    public ArrayList<ArrayList<Integer>> pageFrameTable;
+public class Buffer
 
-    /*
-    The number of page errors (fallos de pagina)
-     */
-    public int pageErrors;
 
-    /*
-    The table of content
-     */
-    //TODO: Santiago elabora esto
-    public ArrayList<Integer> contentTable;
 
-    //--------------------------------------------------------------------------
-    // Constructor
-    //--------------------------------------------------------------------------
+{
+	
+	
+	private  int marcos_pagina;
 
-    /**
-     * Constructor for the buffer. It guards the pageFrameTable
-     * @param pageFrames the number of page frames for the page frame table
-     */
-    public Buffer(int pageFrames) {
-        this.pageFrames = pageFrames;//marcos pagina
-        this.pageFrameTable = new ArrayList<>();//TP in the original buffer
-        this.pageErrors = 0;//Num fallos
-        this.contentTable = new ArrayList<>();//Content page in the original buffer
+	// memory in where  we insert  reference pages 
+	ArrayList<ArrayList<Integer>> TP;
+	
+	// this will tell me the amount of memory failures that I had
+	private int num_fallos;
 
-        initializePageFrameTableValues();//inserts the tuple that handles the refrences to the pages in the frame and the time since last reference
-    }
+	
+	// this is a record of the   reference pages  that are in my memory 
 
-    //--------------------------------------------------------------------------
-    // Synced Methods
-    //--------------------------------------------------------------------------
+	private ArrayList<Integer>  contentPage;
 
-    public synchronized void addPage(int pageNumber){
-        while(!canAddNewPage()){
-           try {
-               wait();
-           }
-           catch (InterruptedException e){
-               e.printStackTrace();
-           }
-        }
 
-        insertPage(pageNumber);
 
-        synchronized (this){
-            notify();
-        }
-    }
 
-    public synchronized void age(){
-        while(!canAddNewPage()){
-            try {
-                wait();//incoming message will wait until someone wakes it up
+
+    
+
+	
+	// to create a a buffer we need the size of that memory, thanks to the "marcos_pagina" we can determinar that size
+	public Buffer(int marcos_pagina) 
+	{
+		this.marcos_pagina=marcos_pagina;
+
+		creacionPaginas();
+		
+		this.contentPage=new ArrayList<>();
+		
+		this.num_fallos=0;
+		
+				
+		TP= new ArrayList<>();
+		
+			
+	}
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+/// paginas_divisiones DETERMINA EL TAMANO DE UNA PAGINA
+
+	public void  creacionPaginas()
+	{	
+		for(int i= 0; i < marcos_pagina; i++){
+	        	Integer pagina= -1;
+	        	Integer edad= 0;	        	
+	        	ArrayList<Integer> marco= new ArrayList<>();
+	        	marco.add(pagina);
+	        	marco.add(edad);
+        	
+	        	TP.add(marco);
+
+	        }
+
+	}
+	
+	
+	
+	
+	/// guardo en una lista las casillas de mi matriz segun el recorrido, para despues saber en que pagina estan referenciadas
+	
+	
+	public synchronized  void adicionar_pagina(int valor) throws  InterruptedException {
+		
+		
+		while( comprobacion()== false ) {
+			
+			try {
+                wait();// Makes the incoming message wait (passive) until someone wakes it up
             }
             catch (InterruptedException e){
                 e.printStackTrace();
             }
+			
+		}
+		
+		insert_page(valor);
+		
+		
+		synchronized (this){
+            notify();
         }
+	
+	}
 
-        makeOlder();
+
+	public synchronized void envejecer() throws InterruptedException{
+
+		while(comprobacion()==false ){
+            try {
+                wait();
+            }
+            catch (InterruptedException e){
+                e.printStackTrace();
+            }
+
+        }
+      makeolder();
 
         synchronized (this){
             notify();
         }
-    }
+        //notify();//As we don't know if the previous thread is passive or active we have to notify just in case it was passive and its in waiting mode
 
 
-    //--------------------------------------------------------------------------
-    // Normal Methods
-    //--------------------------------------------------------------------------
 
-    /**
-     * Ages a page in the page frame table by one unit
-     */
-    public void makeOlder(){
-        for(int i = 0; i < pageFrameTable.size();i++){
-            if(getPageInFrameTable(i) != -1){
-                int number = getPageLastTimeSinceReferenceInFrameTable(i);
-                number += 1;
-                setPageLastTimeSinceReferenceInFrameTable(i,number);
-            }
-        }
-    }
-
-    /**
-     * Initializes all the values according to the specified number of frames and initialices the <page,timeSinceLastReference> tuple within the array
-     */
-    public void initializePageFrameTableValues(){
-        for(int i = 0; i < pageFrames;i++){
-            int page = -1; //initializes all page references as -1 (null)
-            int timeSinceLastReference = 0; //edad in original buffer. All are initialy 0
-
-            ArrayList<Integer> frame = new ArrayList<>();//marco in original buffer
-
-            frame.add(page);//page is in pos 0 within the internal tuples
-            frame.add(timeSinceLastReference);//time since last reference is in pos 1 within the internal tuple
-
-            pageFrameTable.add(frame);//adds tuple of frame to page frame table
-        }
-    }
-
-    /**
-     * Flattens out the original page reference table to just be an int array of the referenced pages
-     * @param originalReferenceTable Original reference table with ElementInfo (basically the page referenced and other useful data such as displacement and originally referenced element of the matrix)
-     * @return
-     */
-    public ArrayList<Integer> convertOriginalReferenceTableToFlatReferenceTable(ArrayList<ElementInfo> originalReferenceTable){
-        ArrayList<Integer> flatReferenceTable = new ArrayList<>();
-
-        for(int i = 0; i < originalReferenceTable.size();i++){
-            flatReferenceTable.add(originalReferenceTable.get(i).getPageNumber());
-        }
-        return flatReferenceTable;
-    }
+	}
 
 
+	public void makeolder() {
+		
+		for(int j= 0; j< TP.size(); j++){
+			
+			if (TP.get(j).get(0) != -1) {
+				
+				
+			   int numero= TP.get(j).get(1);
+			   numero+=1;
+				TP.get(j).set(1, numero);
+			}
+			
+		}
+	   }
+
+
+		
+		
+	
+	
+	
+	
+	
+		
+		
+public	void insert_page(int valor) {
+	
+	boolean centinela	=true;	
+	
+	int num=0;
+
+	if (contentPage.size()<marcos_pagina  || contentPage.contains(valor)== true) {
+		
+	
+	if(comprobacion()) {
+		
+		
+	
+	while ( centinela == true && ( num < TP.size())) {
+		
+		if(TP.get(num).get(0)== -1) 
+		{
+			TP.get(num).set(0, valor);
+			centinela=false;
+			 contentPage.add(valor);
+		}
+		
+		if(TP.get(num).get(0)== valor) {
+			
+			TP.get(num).set(1, 0);
+			centinela=false;
+			
+		}
+
+		num+=1;
+
+	}
+
+	num=0;
+	centinela=true;
+	}
+	}
+	else {
+		
+		fallo_pagina(valor);
+	
+	}
+
+	}
+
+
+
+public void fallo_pagina( int llave) {
+	
+	
+	int numero= 0;
+	int indicado=0;
+	
+	for(int j= 0; j< TP.size(); j++){
+		
+
+		 if (TP.get(j).get(1)> numero ) {
+			 
+			 numero= TP.get(j).get(1);
+			 indicado= TP.get(j).get(0);
+		 }
+	 
+		 }
+	
+	for(int tt= 0; tt< contentPage.size(); tt++){
+		
+		if (contentPage.get(tt)==indicado) {
+			
+			contentPage.remove(tt);
+		}
+		
+		
+	}
+	
+	
+	
+	
+	for(int jj= 0; jj< TP.size(); jj++){
+		
+		 if (TP.get(jj).get(0) == indicado  ) {
+			 
+			 TP.get(jj).set(0, llave);
+			 
+			 TP.get(jj).set(1, 0);
+			 contentPage.add(llave);		 
+		 }
+	 
+	}
+		
+	 num_fallos+=1;
+			
+	
+}
+
+
+	
+
+	
+	
+	
+
+	
+	
+	
+
+		
+		
+		
+		
+		
+	
+	
+	public boolean  comprobacion() {
+	
+		boolean rta = false;
+		
+		
+		 for(int j= 0; j< TP.size(); j++){
+			 
+				 
+			 if (TP.get(j).get(0) == -1 || (TP.get(j).get(0) != -1)) {
+				 				 
+				 rta= true;
+						 
+				 
+			 }
+		 }
+		 
+		 return rta;	
+	}
+	
+	
+	
+	
+	
+  
+	
+    public int fallosdepagina()	
+{
+	return num_fallos;
+}
+	
+	
+	
+	
+	
+
+	
+	
+
+	
+
+public void tablaa() {
+	
+	System.out.println(TP);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<<<<<<< Updated upstream
     //TODO: REMPLAZAR ESO POR LOS NUEVOS
     /**
      * Checks if it is possible to add a new page to the page frame table without generating a memory failure (fallo de pagina)
@@ -190,78 +397,13 @@ public class Buffer {
             else {
                 pageError(pageNumber);
             }
+=======
 
-        }
-    }
+>>>>>>> Stashed changes
 
-    //TODO: V -> Explicame todo este metodo
-    public void pageError(int pageNumber){
-        int num = 0;
-        int indicated = 0;
 
-        for(int i=0; i < pageFrameTable.size();i++){
-            if(getPageLastTimeSinceReferenceInFrameTable(i) > num){
-                num = getPageLastTimeSinceReferenceInFrameTable(i);
-                indicated = getPageInFrameTable(i);
-            }
-        }
 
-        for(int j = 0; j < contentTable.size();j++){
-            if(contentTable.get(j) ==indicated){
-                contentTable.remove(j);
-            }
-        }
 
-        for(int k = 0; k < pageFrameTable.size(); k++){
-            if(getPageInFrameTable(k) == indicated){
-                setPageInFrameTable(k,pageNumber);
-                setPageLastTimeSinceReferenceInFrameTable(k,0);
-                contentTable.add(pageNumber);
-            }
-        }
 
-        pageErrors += 1;
-    }
 
-    /**
-     * Gets the page in theg selected frameIndex of the page frame table
-     * @param frameIndex the frame index
-     * @return the page in the selected frame index
-     */
-    public int getPageInFrameTable(int frameIndex){
-        return pageFrameTable.get(frameIndex).get(0);
-    }
-
-    /**
-     * Replaces value of page number in the selected frame index of the page frame table
-     * @param frameIndex the index of the page frame table where the page wants to be changed
-     * @param newPageNumber the new page number set for that frame in the page frame table
-     */
-    public void setPageInFrameTable(int frameIndex, int newPageNumber){
-        pageFrameTable.get(frameIndex).set(0,newPageNumber);
-    }
-
-    public void setPageLastTimeSinceReferenceInFrameTable(int frameIndex, int newLastTimeSinceReference){
-        pageFrameTable.get(frameIndex).set(1,newLastTimeSinceReference);
-    }
-
-    public int getPageLastTimeSinceReferenceInFrameTable(int frameIndex){
-        return pageFrameTable.get(frameIndex).get(1);
-    }
-
-    public int getPageFrames() {
-        return pageFrames;
-    }
-
-    public ArrayList<ArrayList<Integer>> getPageFrameTable() {
-        return pageFrameTable;
-    }
-
-    public int getPageErrors() {
-        return pageErrors;
-    }
-
-    public ArrayList<Integer> getContentTable() {
-        return contentTable;
-    }
 }

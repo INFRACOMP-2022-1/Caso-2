@@ -78,7 +78,7 @@ public class Buffer{
 	public synchronized  void adicionar_pagina(int valor) throws  InterruptedException {
 		
 		
-		while( comprobacion()== false ) {
+		while( check_older(valor)== true ) {
 			
 			try {
                 wait();// Makes the incoming message wait (passive) until someone wakes it up
@@ -154,9 +154,7 @@ public	void insert_page(int valor) {
 	int num=0;
 
 	if (contentPage.size()<marcos_pagina  || contentPage.contains(valor)== true) {
-		
-	
-	if(comprobacion()) {
+
 		while ( centinela == true && ( num < TP.size())) {
 		
 			if(TP.get(num).get(0)== -1) {
@@ -174,7 +172,7 @@ public	void insert_page(int valor) {
 
 		num=0;
 		centinela=true;
-		}
+
 	}
 	else {
 		
@@ -231,6 +229,36 @@ public void fallo_pagina( int llave) {
 	 num_fallos+=1;
 			
 	
+}
+
+
+
+public boolean  check_put( ) {
+
+	 for(int j= 0; j< TP.size(); j++){
+	 
+		if (TP.get(j).get(0) == -1 ||contentPage.size()< marcos_pagina) {
+						  
+			return true;	
+		}
+				
+	 }
+	return false;	
+}
+
+
+
+
+public boolean  check_older(int tied ) {
+	
+	if (contentPage.size()== numero  && contentPage.contains(tied)== false) {
+		
+		return true;
+		
+		
+	}
+	return false;
+
 }
 
 
