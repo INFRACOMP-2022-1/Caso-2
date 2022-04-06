@@ -140,7 +140,7 @@ public class Buffer {
      * comprobación() in original buffer
      * @return boolean. True if it is possible to add a new page, false the contrary.
      */
-    public boolean canAddNewPage(){
+    public boolean gicanAddNewPage(){
 
         for(int i =0;i < pageFrameTable.size(); i++){
             //TODO: V -> No entiendo tanto la logica de este if , no seria siempre true?

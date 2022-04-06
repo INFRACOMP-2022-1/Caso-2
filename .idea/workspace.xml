@@ -10,7 +10,6 @@
     <list default="true" id="4006985b-5ba6-47e6-b67e-8e4b86b13fbd" name="Changes" comment="thread 1 para ir recorriendo la lista de paginas generadas.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Buffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Buffer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Thread1.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Thread1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +48,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Proyecto-Caso-2/testMatriz" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Caso 1/Caso1" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -123,7 +122,7 @@
       <workItem from="1649173824926" duration="5404000" />
       <workItem from="1649186597424" duration="725000" />
       <workItem from="1649190583782" duration="1072000" />
-      <workItem from="1649203231270" duration="5064000" />
+      <workItem from="1649203231270" duration="8335000" />
     </task>
     <task id="LOCAL-00001" summary="thread 1 para ir recorriendo la lista de paginas generadas.">
       <created>1649008272943</created>
