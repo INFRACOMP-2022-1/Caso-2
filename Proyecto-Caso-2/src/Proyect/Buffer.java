@@ -91,7 +91,7 @@ public class Buffer {
      */
     public void makeOlder(){
         for(int i = 0; i < pageFrameTable.size();i++){
-            if(getPageInFrameTable(i) != -1){
+            if(getPageInFrameTable(i) != -1 ){
                 int number = getPageLastTimeSinceReferenceInFrameTable(i);
                 number += 1;
                 setPageLastTimeSinceReferenceInFrameTable(i,number);
@@ -178,7 +178,7 @@ public class Buffer {
                     }
 
                     //finds an older reference to the current pageNumber, so it updates the time since last reference to 0
-                    if(getPageInFrameTable(num) == pageNumber){
+                    else if(getPageInFrameTable(num) == pageNumber){
                         setPageLastTimeSinceReferenceInFrameTable(num,0);
                         centinel = false;
                     }

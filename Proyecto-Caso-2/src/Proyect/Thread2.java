@@ -14,9 +14,9 @@ public class Thread2 extends Thread {
     public Buffer buffer;
 
     /*
-    Saves a reference to the status of execution of thread 1. If true then the thread is running, else its finished its execution.
+    Saves a reference to thread 1.
      */
-    public boolean thread1IsRunning;
+    public Thread thread1;
 
     //--------------------------------------------------------------------------
     // Constructor
@@ -25,9 +25,9 @@ public class Thread2 extends Thread {
     /**
      * Constructor of thread 2. This is the thread that is responsible for the execution of the aging algorithm on the frame page table
      */
-    public Thread2(Buffer buffer, boolean thread1IsRunning) {
+    public Thread2(Buffer buffer, Thread1 thread1) {
         this.buffer = buffer;
-        this.thread1IsRunning = thread1IsRunning;
+        this.thread1 = thread1;
     }
 
     //--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ public class Thread2 extends Thread {
     @Override
     public void run(){
         //TODO: Contenido del run. Correr hasta que termine de iterar a traves de toda la lista.
-        while(isThread1IsRunning()){
+        while(thread1.isAlive()){
             agePageFrameTable();
         }
     }
@@ -51,8 +51,7 @@ public class Thread2 extends Thread {
      * Werther or not thread 1 is running depends if it has cycled through all the page references in the reference table.
      */
     public void agePageFrameTable(){
-        //TODO: Excecute aging algorithm. Toca antes implementar esos metodos en el buffer
-        //buffer.ageReferences();
+        buffer.age();
 
         //Thread goes to sleep 1 millisecond after excecuting the aging algorithm
         try {
@@ -64,9 +63,5 @@ public class Thread2 extends Thread {
 
     public Buffer getBuffer() {
         return buffer;
-    }
-
-    public boolean isThread1IsRunning() {
-        return thread1IsRunning;
     }
 }

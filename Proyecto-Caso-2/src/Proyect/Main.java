@@ -68,14 +68,20 @@ public class Main {
      * Option 2
      */
     public static void option2(){
-        Configuration configuration = selectConfiguration();
+        try {
+            Configuration configuration = selectConfiguration();
 
-        System.out.println("");
+            System.out.println("");
 
-        int pageFrameSize = selectPageFrameSize();
+            int pageFrameSize = selectPageFrameSize();
 
-        //el archivo de referencia se puede acceder con configuration.getReferenceTable()
-        Option2 option2 = new Option2(configuration,pageFrameSize);
+            //el archivo de referencia se puede acceder con configuration.getReferenceTable()
+            Option2 option2 = new Option2(configuration,pageFrameSize);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     /**
