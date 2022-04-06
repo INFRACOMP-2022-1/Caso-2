@@ -69,8 +69,8 @@ public class Thread1 extends Thread{
 
 
     public void updatePageFrameTable(int currentPageReference) throws InterruptedException{
-        
-        Buffer.adicionar_pagina(currentPageReference);
+
+        buffer.addPage(currentPageReference);
 
         //Sends the thread to sleep for to milliseconds after adding a page on the frame page table
         try {
