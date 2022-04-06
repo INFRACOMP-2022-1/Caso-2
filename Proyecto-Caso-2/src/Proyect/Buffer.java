@@ -134,6 +134,7 @@ public class Buffer {
     }
 
 
+    //TODO: REMPLAZAR ESO POR LOS NUEVOS
     /**
      * Checks if it is possible to add a new page to the page frame table without generating a memory failure (fallo de pagina)
      * comprobación() in original buffer
@@ -148,6 +149,14 @@ public class Buffer {
             }
         }
         return false;
+    }
+
+    public boolean checkPut(){
+        return true;
+    }
+
+    public boolean checkOlder(){
+        return true;
     }
 
 
