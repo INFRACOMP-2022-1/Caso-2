@@ -9,13 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4006985b-5ba6-47e6-b67e-8e4b86b13fbd" name="Changes" comment="thread 1 para ir recorriendo la lista de paginas generadas.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/outputFiles/configTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/option1OutputFiles/configTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/outputFiles/hola.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/option1OutputFiles/hola.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/outputFiles/vamosporel5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/option1OutputFiles/vamosporel5.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Configuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Option2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Option2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Caso-2/Proyect/Configuration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Caso-2/Proyect/Configuration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Caso-2/Proyect/Option2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Caso-2/Proyect/Option2.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +136,7 @@
       <workItem from="1649173824926" duration="5404000" />
       <workItem from="1649186597424" duration="725000" />
       <workItem from="1649190583782" duration="1072000" />
-      <workItem from="1649203231270" duration="12790000" />
+      <workItem from="1649203231270" duration="13350000" />
     </task>
     <task id="LOCAL-00001" summary="thread 1 para ir recorriendo la lista de paginas generadas.">
       <created>1649008272943</created>
