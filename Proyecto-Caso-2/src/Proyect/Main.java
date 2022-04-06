@@ -172,9 +172,9 @@ public class Main {
             System.out.println("Row size needs to be an integer. Please try again.");
             rowsUnparsed = scanner.nextLine();
         }
-        while(pageSize%Integer.parseInt(rowsUnparsed)!=0){
-            System.out.println("The entered page size is not divisible by the integer size selected. Please select a valid integer size.");
-        }
+       // while(pageSize%Integer.parseInt(rowsUnparsed)!=0){
+         //   System.out.println("The entered page size is not divisible by the integer size selected. Please select a valid integer size.");
+        //}
         rows = Integer.parseInt(rowsUnparsed);
 
         /*
