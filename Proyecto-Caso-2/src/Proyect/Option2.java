@@ -43,6 +43,9 @@ public class Option2 {
 
         //Output report
         option2ResultConsole();
+
+        //Save report
+        createReportFile();
     }
 
     //--------------------------------------------------------------------------
