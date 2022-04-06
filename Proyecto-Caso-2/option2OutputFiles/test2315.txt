@@ -1,0 +1,16 @@
+
+REPORT
+CONFIGURATION:
+TP=8
+TE=2
+NF=4
+NC=4
+TR=2
+NP=12
+NR=48
+
+MARCOS DE PAGINA:
+Page frames(Marcos de pagina): 4
+FALLOS DE PAGINA:
+Page errors(Fallos de pagina): 44
+For more information on the configuration file you can check in option1OutputFiles/test2.txt

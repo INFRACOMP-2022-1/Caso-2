@@ -64,8 +64,9 @@ public class Option2 {
         System.out.println(String.format("NP=%d",configuration.pageNumber));
         System.out.println(String.format("NR=%d",configuration.totalReferences));
         System.out.println("");
+        System.out.println("");
 
-        System.out.println("Page frames(Marcos de pagina): " + buffer.pageFrames + "\n");
+        System.out.println("Page frames(Marcos de pagina): " + buffer.pageFrames + "\n\n");
 
         System.out.println("Page errors(Fallos de pagina): " + buffer.pageErrors + "\n\n");
 
@@ -106,10 +107,10 @@ public class Option2 {
             //option 2 info
 
             fileWriter.write("MARCOS DE PAGINA:\n");
-            fileWriter.write("Page frames(Marcos de pagina): " + buffer.pageFrames + "\n");
+            fileWriter.write("Page frames(Marcos de pagina): " + buffer.pageFrames + "\n\n");
 
             fileWriter.write("FALLOS DE PAGINA:\n");
-            fileWriter.write("Page errors(Fallos de pagina): " + buffer.pageErrors + "\n");
+            fileWriter.write("Page errors(Fallos de pagina): " + buffer.pageErrors + "\n\n");
 
             fileWriter.write("For more information on the configuration file you can check in option1OutputFiles/" + configuration.configurationName + ".txt" );
 
