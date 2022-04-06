@@ -38,6 +38,7 @@ public class Buffer {
      * @param pageFrames the number of page frames for the page frame table
      */
     public Buffer(int pageFrames) {
+
         this.pageFrames = pageFrames;//marcos pagina
         this.pageFrameTable = new ArrayList<>();//TP in the original buffer
         this.pageErrors = 0;//Num fallos
@@ -66,7 +67,7 @@ public class Buffer {
         
         while(check_put( )== false){
             try {
-                wait();//incoming message will wait until someone wakes it up
+                wait();
             }
             catch (InterruptedException e){
                 e.printStackTrace();
@@ -167,7 +168,7 @@ public class Buffer {
         int num = 0;
 
         if(contentTable.size()< pageFrames || contentTable.contains(pageNumber) == true){
-            if(canAddNewPage()){
+
                 while(centinel == true && num < pageFrameTable.size()){
                     //finds empty space where it can add the page
                     if(getPageInFrameTable(num) == -1){
@@ -188,11 +189,12 @@ public class Buffer {
                 //TODO: V -> Tampoco entiendo la nesecidad de esto
                 num = 0;
                 centinel = true;
-            }
-            else {
-                pageError(pageNumber);
-            }
+               
+            
 
+        }
+        else {
+            pageError(pageNumber);
         }
     }
 
