@@ -1,5 +1,8 @@
 package Proyect;
 
+/**
+ * Element info
+ */
 public class ElementInfo {
     //--------------------------------------------------------------------------
     // Attributes

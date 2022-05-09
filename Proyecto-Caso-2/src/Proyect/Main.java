@@ -7,6 +7,11 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Main class
+ * @author Santiago Vela
+ * @author Verónica Escobar
+ */
 public class Main {
     //--------------------------------------------------------------------------
     // Attributes
@@ -281,7 +286,7 @@ public class Main {
         if(directoryListings != null){
             for(int i = 0 ; i < directoryListings.length;i++){
                 loadSavedConfiguration(directoryListings[i]);
-                System.out.println(String.format("Configuration file %s has been loaded succesfully",directoryListings[i].getName()));
+                System.out.println(String.format("Configuration file %s has been loaded successfully",directoryListings[i].getName()));
             }
 
             System.out.println("All configurations have been loaded");
@@ -312,33 +317,42 @@ public class Main {
             String configNameConf= "";
 
             String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null && i<5) {
+                String[] lineStr =line.split("=");
                 switch(i){
+                    //TAMAÑO PAGINA
                     case 0:
-                        pageSizeConf = Integer.parseInt(line);
+                        pageSizeConf = Integer.parseInt(lineStr[1]);
                         break;
+
+                    //TAMAÑO ENTERO
                     case 1:
-                        intSizeConf = Integer.parseInt(line);
+                        intSizeConf = Integer.parseInt(lineStr[1]);
                         break;
+
+                    //NUMERO FILAS
                     case 2:
-                        rowsConf =Integer.parseInt(line);
+                        rowsConf =Integer.parseInt(lineStr[1]);
                         break;
+
+                    //NUMERO COLUMNAS
                     case 3:
-                        columnsConf = Integer.parseInt(line);
+                        columnsConf = Integer.parseInt(lineStr[1]);
                         break;
+
+                    //TIPO RECORRIDO (C ES COLUMNS FIRST, F ES ROWS FIRST)
                     case 4:
-                        runTypeConf = Integer.parseInt(line);
-                        break;
-                    case 5:
-                        configNameConf = line;
+                        runTypeConf = (lineStr[1].equals("F"))?1:2;
                         break;
                 }
                 i += 1;
             }
             br.close();
 
+
+
             //Creates configuration with the given parameters
-            Configuration currentConfig = new Configuration(pageSizeConf,intSizeConf,rowsConf,columnsConf,runTypeConf,configNameConf,true);
+            Configuration currentConfig = new Configuration(pageSizeConf,intSizeConf,rowsConf,columnsConf,runTypeConf,fileToLoad.getName(),true);
 
             //Adds configuration to the loadedConfiguration array
             loadedConfigurations.add(currentConfig);

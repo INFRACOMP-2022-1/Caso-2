@@ -2,6 +2,12 @@ package Proyect;
 
 import java.util.ArrayList;
 
+/**
+ * Buffer class , holds the page frame table and all the synchronized operations on the page frame table. Responsible for keeping count of the errors.
+ * Operation depends on the page frames.
+ * @author Santiago Vela
+ * @author Veronica Escobar
+ */
 public class Buffer {
     //--------------------------------------------------------------------------
     // Attributes

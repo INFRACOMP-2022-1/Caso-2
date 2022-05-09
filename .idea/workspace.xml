@@ -8,7 +8,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4006985b-5ba6-47e6-b67e-8e4b86b13fbd" name="Changes" comment="thread 1 para ir recorriendo la lista de paginas generadas.">
-      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Option2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Option2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/configurations/configTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/configurations/hola.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/configurations/test2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/configurations/vamosporel5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Buffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Buffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/ElementInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/ElementInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Caso-2/Proyect/Buffer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Caso-2/Proyect/Buffer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Caso-2/Proyect/Configuration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Caso-2/Proyect/Configuration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Caso-2/Proyect/ElementInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Caso-2/Proyect/ElementInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Caso-2/Proyect/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Caso-2/Proyect/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Caso-2/Proyect/Option2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Caso-2/Proyect/Option2.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,34 +54,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Caso 1/Caso1" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jfede\Documents\VERO\INFRACOMP\Caso 2\Caso-2\Proyecto-Caso-2\testMatriz" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\veron\OneDrive\Documents\Universidad\Infraestructura Computacional\Caso 2\Caso-2\Proyecto-Caso-2\configurations" />
       <recent name="C:\Users\jfede\Documents\VERO\INFRACOMP\Caso 2\Caso-2\Proyecto-Caso-2\testMatriz" />
       <recent name="C:\Users\jfede\Documents\VERO\INFRACOMP\Caso 2\Caso-2\Proyecto-Caso-2\src\Proyect" />
       <recent name="C:\Users\jfede\Documents\VERO\INFRACOMP\Caso 2\Caso-2\Proyecto-Caso-2\src" />
       <recent name="C:\Users\jfede\Documents\VERO\INFRACOMP\Caso 2\Caso-2\Proyecto-Caso-2" />
-      <recent name="C:\Users\jfede\Documents\VERO\INFRACOMP\Caso 2\Caso-2\Proyecto-Caso-2\report" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main (1)">
@@ -136,7 +142,16 @@
       <workItem from="1649173824926" duration="5404000" />
       <workItem from="1649186597424" duration="725000" />
       <workItem from="1649190583782" duration="1072000" />
-      <workItem from="1649203231270" duration="13596000" />
+      <workItem from="1649203231270" duration="15682000" />
+      <workItem from="1649258829188" duration="774000" />
+      <workItem from="1651466890611" duration="763000" />
+      <workItem from="1651536757675" duration="151000" />
+      <workItem from="1651585579871" duration="595000" />
+      <workItem from="1651600977792" duration="991000" />
+      <workItem from="1651602278589" duration="65000" />
+      <workItem from="1651602347125" duration="2926000" />
+      <workItem from="1651704995326" duration="27000" />
+      <workItem from="1652080362446" duration="3069000" />
     </task>
     <task id="LOCAL-00001" summary="thread 1 para ir recorriendo la lista de paginas generadas.">
       <created>1649008272943</created>
@@ -171,17 +186,12 @@
       <breakpoints>
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Buffer.java</url>
-          <line>53</line>
+          <line>59</line>
           <properties class="Proyect.Buffer" method="addPage">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Proyecto-Caso-2/src/Proyect/Thread1.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

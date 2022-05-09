@@ -18,6 +18,7 @@ public class Configuration {
     // Attributes
     //--------------------------------------------------------------------------
 
+    public static int configCreatedId = 1;
     /*
     The initial number that the matrices start with
      */
@@ -66,15 +67,13 @@ public class Configuration {
     // Constructor
     //--------------------------------------------------------------------------
 
-    public Configuration(int pageSize, int intSize, int rows, int columns, int runType, String configurationName, boolean loadingExistingConfiguration){
+    public Configuration(int pageSize, int intSize, int rows, int columns, int runType, String configurationName,boolean loadingExistingConfiguration){
         //Save the parameters
         this.pageSize = pageSize;
         this.intSize = intSize;
         this.rows = rows;
         this.columns = columns;
         this.runType = runType;
-
-        //Configuration file name
         this.configurationName = configurationName;
 
         //Additional info
@@ -488,8 +487,9 @@ public class Configuration {
         int INT_SIZE_PARAM = getIntSize();
         int ROWS_PARAM = getRows();
         int COLUMNS_PARAM = getColumns();
-        int RUN_TYPE_PARAM = getRunType();
+        String RUN_TYPE_PARAM = (getRunType()==1)?"F":"C";
         String CONFIGURATION_NAME_PARAM = getConfigurationName();
+        configCreatedId+=1;
 
         try {
             String fileRoute = String.format("Proyecto-Caso-2/configurations/%s.txt", CONFIGURATION_NAME_PARAM);
@@ -501,12 +501,12 @@ public class Configuration {
                 FileWriter fileWriter = new FileWriter(fileRoute);
 
                 //WRITE PARAMETERS IN ORDER JUST SEPARATED BY THE LINE JUMP
-                fileWriter.write(PAGE_SIZE_PARAM+"\n");
-                fileWriter.write(INT_SIZE_PARAM+"\n");
-                fileWriter.write(ROWS_PARAM+"\n");
-                fileWriter.write(COLUMNS_PARAM+"\n");
-                fileWriter.write(RUN_TYPE_PARAM+"\n");
-                fileWriter.write(CONFIGURATION_NAME_PARAM+"\n");
+                fileWriter.write("TP="+PAGE_SIZE_PARAM+"\n");
+                fileWriter.write("TE="+INT_SIZE_PARAM+"\n");
+                fileWriter.write("NF="+ROWS_PARAM+"\n");
+                fileWriter.write("NC="+COLUMNS_PARAM+"\n");
+                fileWriter.write("NP="+RUN_TYPE_PARAM+"\n");
+                fileWriter.write("TR="+CONFIGURATION_NAME_PARAM+"\n");
 
                 fileWriter.close();
             } else {
